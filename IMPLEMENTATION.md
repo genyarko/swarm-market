@@ -459,3 +459,14 @@ These numbers should be visible on your dashboard and in your submission:
 5. **Agent count**: 5–10 autonomous agents
 6. **Total economic activity**: ~$0.50–$1.00 across 200+ tasks
 7. **Zero human intervention** after pressing "start"
+
+
+The CLI keeps flipping into interactive mode despite the flags (Git Bash on Windows — TTY detection issue) and the -r flag seems to need an extra auth scope the CLI doesn't   currently have.                                                                                                                                                            
+                                                                                                                                                                              
+  Let me switch to a hybrid approach: you create the empty services in the UI (30 sec), I set vars + start commands via CLI.                                                                                                                                                                                                                                
+  In the Railway web UI, impartial-courage project:                                                                                                                             1. Click "+ Create" or the "+" button → Empty Service → name it agents                                                                                                      
+  2. Same thing for coordinator                                                                                                                                                 3. For each: Settings → Source → Connect Repo → genyarko/swarm-market                                                                                                       
+
+  (Don't set any variables or start command yet — I'll do that via CLI.)
+
+  Tell me when both services exist and I'll run the CLI steps.

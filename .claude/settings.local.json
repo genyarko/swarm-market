@@ -18,7 +18,19 @@
       "Bash(curl -s http://localhost:8787/snapshot)",
       "Bash(curl -s --max-time 3 -N http://localhost:8787/events)",
       "Bash(taskkill //F //FI \"IMAGENAME eq node.exe\")",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(railway variables:*)",
+      "Bash(node -e \"const v=JSON.stringify\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('wallets.json','utf8'\\)\\)\\); require\\('child_process'\\).execSync\\('railway variables --set WALLETS_JSON=' + JSON.stringify\\(v\\), {stdio:'inherit'}\\)\")",
+      "Bash(railway redeploy:*)",
+      "Bash(railway status:*)",
+      "Bash(railway add:*)",
+      "Bash(railway service:*)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(JSON.parse\\(require\\('fs'\\).readFileSync\\('wallets.json','utf8'\\)\\)\\)\\)\")",
+      "Bash(railway whoami:*)",
+      "Bash(railway --help)",
+      "Bash(railway up:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)"
     ]
   }
 }

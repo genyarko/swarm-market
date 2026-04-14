@@ -25,11 +25,11 @@
     "@circle-fin/smart-contract-platform": "^2.0.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
-    "node-fetch": "^3.3.2"
-  },
-  "devDependencies": {
-    "@types/node": "^20.12.12",
+    "node-fetch": "^3.3.2",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12"
   }
 }

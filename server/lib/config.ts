@@ -37,9 +37,11 @@ function required(key: string): string {
 }
 
 export function loadWallets(): WalletRecord[] {
+  if (process.env.WALLETS_JSON) return JSON.parse(process.env.WALLETS_JSON);
   return JSON.parse(readFileSync(new URL('../../wallets.json', import.meta.url), 'utf8'));
 }
 
 export function loadDeployment(): Deployment {
+  if (process.env.DEPLOYMENT_JSON) return JSON.parse(process.env.DEPLOYMENT_JSON);
   return JSON.parse(readFileSync(new URL('../../deployments.json', import.meta.url), 'utf8'));
 }

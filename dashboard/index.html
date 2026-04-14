@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent Swarm Task Market</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">◆</span>
+        <h1>AGENT SWARM TASK MARKET</h1>
+      </div>
+      <div class="meta">
+        <div class="meta-item">
+          <span class="label">Market</span>
+          <span class="mono" id="market-addr">…</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Coordinator</span>
+          <span class="mono" id="coord-addr">…</span>
+        </div>
+        <div class="meta-item total">
+          <span class="label">Total Spent</span>
+          <span class="value mono" id="total-spent">$0.0000</span>
+        </div>
+        <div class="meta-item">
+          <span class="label">Status</span>
+          <span id="conn-status" class="pill pill-warn">connecting</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel" id="panel-agents">
+        <header>
+          <h2>Agent Status</h2>
+          <span class="subtitle" id="agents-subtitle">—</span>
+        </header>
+        <div id="agents" class="agents"></div>
+      </section>
+
+      <section class="panel" id="panel-feed">
+        <header>
+          <h2>Live Task Feed</h2>
+          <span class="subtitle" id="feed-subtitle">awaiting events…</span>
+        </header>
+        <ul id="feed" class="feed"></ul>
+      </section>
+
+      <section class="panel" id="panel-flow">
+        <header>
+          <h2>USDC Flow</h2>
+          <span class="subtitle">Coordinator → Agents</span>
+        </header>
+        <div id="flow" class="flow"></div>
+      </section>
+
+      <section class="panel" id="panel-stats">
+        <header>
+          <h2>Statistics</h2>
+          <span class="subtitle">Real-time</span>
+        </header>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Tasks Posted</span>
+            <span class="stat-value" id="s-posted">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Tasks Completed</span>
+            <span class="stat-value" id="s-completed">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Avg Completion</span>
+            <span class="stat-value" id="s-avg">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Avg Cost / Task</span>
+            <span class="stat-value" id="s-avgcost">—</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Throughput</span>
+            <span class="stat-value" id="s-tput">0 /s</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Total Spent</span>
+            <span class="stat-value" id="s-spent">$0.0000</span>
+          </div>
+        </div>
+        <div class="gas-hero">
+          <div class="gas-line trad">
+            <span class="gas-label">Gas on Traditional L1</span>
+            <span class="gas-value bad mono" id="g-trad">$0.00</span>
+          </div>
+          <div class="gas-line arc">
+            <span class="gas-label">Gas on Arc</span>
+            <span class="gas-value good mono" id="g-arc">$0.00</span>
+          </div>
+          <div class="savings">
+            <span class="savings-label">Savings</span>
+            <span class="savings-value mono" id="g-savings">—</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

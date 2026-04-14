@@ -1,0 +1,308 @@
+[
+  {
+    "id": "n001",
+    "lang": "en",
+    "source": "news",
+    "text": "The Federal Reserve signaled it may hold rates steady through mid-year as inflation data comes in slightly hotter than expected, while unemployment remains near historic lows. Officials emphasized patience, noting that the labor market's resilience affords them the luxury of observing another quarter of data before committing to cuts."
+  },
+  {
+    "id": "n002",
+    "lang": "en",
+    "source": "news",
+    "text": "OpenAI announced it will open a research office in Tokyo and deepen ties with SoftBank around a long-rumored semiconductor venture. The move comes amid increasing scrutiny from regulators in both the United States and European Union over the concentration of AI compute supply chains."
+  },
+  {
+    "id": "n003",
+    "lang": "en",
+    "source": "news",
+    "text": "A cluster of small earthquakes near Reykjavik triggered renewed concern about volcanic activity on the Reykjanes peninsula. Civil protection authorities said they were monitoring seismic readings hourly and had pre-positioned emergency supplies at coastal towns."
+  },
+  {
+    "id": "n004",
+    "lang": "en",
+    "source": "news",
+    "text": "Shares of major cloud providers rallied after stronger-than-expected earnings from Microsoft suggested that corporate AI spending has not slowed. Analysts pointed to multi-year commitments from enterprise customers as evidence that the buildout is durable rather than speculative."
+  },
+  {
+    "id": "n005",
+    "lang": "en",
+    "source": "news",
+    "text": "A landmark bipartisan bill aimed at modernizing the nation's air traffic control systems advanced out of committee on Thursday. Supporters say the measure will replace decades-old radar infrastructure with satellite-based tracking, which proponents argue will reduce delays and improve safety."
+  },
+  {
+    "id": "a001",
+    "lang": "en",
+    "source": "article",
+    "text": "Arc is a new Layer 1 blockchain by Circle, designed with USDC as the native gas token. It targets sub-cent settlement latency and gasless UX for end users while preserving programmability via full EVM compatibility. Nanopayments are a first-class primitive aimed at machine-to-machine economics and streaming micro-transactions. The design choices reflect a bet that agent-driven commerce will dominate on-chain activity over the coming decade, where a single user session could spawn hundreds of tiny settlements across many autonomous counterparties."
+  },
+  {
+    "id": "a002",
+    "lang": "en",
+    "source": "article",
+    "text": "Autonomous research agents are becoming practical for narrow domains: literature search, code migration, and data cleaning. What remains hard is giving them durable economic identity — a wallet, a reputation, and the ability to transact without a human co-signer for every step. Stablecoin rails that settle in seconds for fractions of a cent make the economics tractable, but the trust layer still requires careful design."
+  },
+  {
+    "id": "a003",
+    "lang": "en",
+    "source": "article",
+    "text": "The hardest part of running a specialist-agent swarm is not the individual agent — it is the coordinator. Deciding which tasks to post, when to post them, and how to aggregate results is where the economic logic lives. A badly designed coordinator will either flood the market with duplicate work or starve agents into idleness. The elegant coordinator posts just enough work to keep throughput high while staying under budget."
+  },
+  {
+    "id": "a004",
+    "lang": "en",
+    "source": "article",
+    "text": "Zero-knowledge rollups have matured from research prototypes into serious production infrastructure. The remaining questions are less about cryptography and more about developer ergonomics: debuggability, observability, and the ability to reason about cost. Teams adopting rollups report that the operational challenges rival the protocol-level ones."
+  },
+  {
+    "id": "a005",
+    "lang": "en",
+    "source": "article",
+    "text": "Energy demand from data centers is on track to double by the end of the decade, driven almost entirely by AI training and inference. Utilities in Virginia, Oregon, and Ireland are reporting queue times of three or more years for new industrial interconnects. Whether this becomes a crisis or a boom depends largely on how quickly new generation and transmission can be permitted and built."
+  },
+  {
+    "id": "r001",
+    "lang": "en",
+    "source": "review",
+    "text": "The new update completely broke my workflow. Every single button now takes three clicks to do what used to take one. Absolutely infuriating."
+  },
+  {
+    "id": "r002",
+    "lang": "en",
+    "source": "review",
+    "text": "Honestly one of the best purchases I've made this year. It just works, and it keeps working. Highly recommend."
+  },
+  {
+    "id": "r003",
+    "lang": "en",
+    "source": "review",
+    "text": "It's fine. Does what it says. Nothing special, nothing terrible. I'd buy it again if I had to but I wouldn't go out of my way to recommend it."
+  },
+  {
+    "id": "r004",
+    "lang": "en",
+    "source": "review",
+    "text": "Arrived broken. Customer service was rude and unhelpful. Now I'm out the money and the time. Never again."
+  },
+  {
+    "id": "r005",
+    "lang": "en",
+    "source": "review",
+    "text": "I was skeptical at first but after using it for three months I'm a convert. The build quality is excellent and battery life exceeded my expectations."
+  },
+  {
+    "id": "r006",
+    "lang": "en",
+    "source": "review",
+    "text": "Meh. Overpriced for what you get. The marketing oversells it by a lot."
+  },
+  {
+    "id": "r007",
+    "lang": "en",
+    "source": "review",
+    "text": "Five stars. Setup took under a minute, and it integrated with everything I threw at it without complaint."
+  },
+  {
+    "id": "s001",
+    "lang": "en",
+    "source": "snippet",
+    "text": "SpaceX confirmed a static fire test for the next Starship vehicle on Wednesday."
+  },
+  {
+    "id": "s002",
+    "lang": "en",
+    "source": "snippet",
+    "text": "The movie premiered to rave reviews at Cannes and is already generating Oscar buzz."
+  },
+  {
+    "id": "s003",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Apple is expected to unveil a new low-cost iPad at its spring event next month."
+  },
+  {
+    "id": "s004",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Senator's proposed rent-cap legislation drew sharp criticism from housing economists."
+  },
+  {
+    "id": "s005",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Researchers at MIT announced a new catalyst that could cut ammonia production emissions by 40 percent."
+  },
+  {
+    "id": "s006",
+    "lang": "en",
+    "source": "snippet",
+    "text": "The Lakers clinched a playoff berth with a buzzer-beater in overtime."
+  },
+  {
+    "id": "s007",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Coffee futures hit a two-year high on drought concerns in Brazil."
+  },
+  {
+    "id": "s008",
+    "lang": "en",
+    "source": "snippet",
+    "text": "A new open-source framework for robot learning gained traction after a viral demo."
+  },
+  {
+    "id": "s009",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Gene therapy trial reports promising results for inherited retinal disease."
+  },
+  {
+    "id": "s010",
+    "lang": "en",
+    "source": "snippet",
+    "text": "Quarterly earnings beat expectations across the semiconductor sector."
+  },
+  {
+    "id": "e001",
+    "lang": "en",
+    "source": "entities",
+    "text": "On April 20, 2026, OpenAI announced that Sam Altman would visit Tokyo to meet with SoftBank CEO Masayoshi Son regarding a $100 billion AI chip initiative. The meeting is scheduled at the Roppongi headquarters."
+  },
+  {
+    "id": "e002",
+    "lang": "en",
+    "source": "entities",
+    "text": "Anthropic, headquartered in San Francisco, released Claude Opus 4.6 on October 15, 2025. The model was benchmarked against GPT-5 and Gemini 3, with CEO Dario Amodei highlighting improvements in agentic coding tasks."
+  },
+  {
+    "id": "e003",
+    "lang": "en",
+    "source": "entities",
+    "text": "Circle filed confidentially for an IPO with the SEC in January 2024, naming JPMorgan, Citigroup, and Goldman Sachs as underwriters. Jeremy Allaire, cofounder and CEO, has led the company since 2013."
+  },
+  {
+    "id": "e004",
+    "lang": "en",
+    "source": "entities",
+    "text": "On June 12, Tesla broke ground on a new gigafactory outside Monterrey, Mexico, with Governor Samuel García and Elon Musk in attendance. The $5 billion facility is expected to produce 1 million vehicles per year by 2027."
+  },
+  {
+    "id": "e005",
+    "lang": "en",
+    "source": "entities",
+    "text": "The FDA approved Moderna's flu-COVID combination vaccine, mRNA-1083, on March 3, 2026. Trials involved 22,000 participants across 144 clinical sites in the United States and Europe."
+  },
+  {
+    "id": "l001",
+    "lang": "en",
+    "source": "long",
+    "text": "The global shift toward electric vehicles has accelerated faster than most analysts predicted a decade ago, but the transition is uneven across geographies. In Norway, more than ninety percent of new passenger cars sold last year were electric, a figure achieved through a mix of aggressive tax incentives, strong public charging infrastructure, and early commitments from automakers. In the United States, by contrast, electric vehicles account for roughly ten percent of new sales, with adoption concentrated on the coasts. China remains the dominant manufacturer, producing more than half of the world's battery-electric vehicles and exporting them into markets where local producers face margin pressure. The critical variable over the coming three to five years will be battery chemistry: whether sodium-ion and lithium iron phosphate can continue to close the gap on energy density while reducing exposure to supply-constrained metals like cobalt and nickel. If they do, electric vehicles become competitive on sticker price without subsidy, and the transition becomes self-sustaining."
+  },
+  {
+    "id": "l002",
+    "lang": "en",
+    "source": "long",
+    "text": "When programmers talk about 'technical debt,' they usually mean the accumulated shortcuts in a codebase that make future changes slower. But the metaphor flattens some important distinctions. Some debt is taken on deliberately, to ship faster, with a clear plan to refactor later. Other debt is inherited — from prior engineers, from acquisitions, from libraries whose maintainers disappeared. A third kind is structural: it emerges not from any one bad decision but from the collision of many reasonable ones made at different times with incomplete information. The third kind is the hardest to address because there is no single lever to pull. Refactoring it requires a rare combination of organizational patience and technical leadership, because the work cannot be justified on a per-ticket basis — the benefits only appear once the whole system is coherent again."
+  },
+  {
+    "id": "l003",
+    "lang": "en",
+    "source": "long",
+    "text": "Stablecoins have quietly become one of the most successful product categories in crypto, settling trillions of dollars in annualized volume without the volatility that characterizes most tokens. Their real use case is not speculation but payments: remittances from workers abroad, dollar savings in countries with weak currencies, and increasingly, machine-to-machine settlement between automated systems. The policy conversation is catching up. Clearer legislation in the United States would bring stablecoin issuers into a regulated perimeter similar to money-market funds, while new rails like Arc aim to make settlement itself nearly free. If both trends continue, stablecoins may become the default medium for small-value digital payments in much the same way that TCP/IP became the default medium for data."
+  },
+  {
+    "id": "f001",
+    "lang": "es",
+    "source": "foreign",
+    "text": "Buenos días. ¿Dónde está la cafetería más cercana? Necesito un espresso fuerte antes de mi reunión."
+  },
+  {
+    "id": "f002",
+    "lang": "fr",
+    "source": "foreign",
+    "text": "Le gouvernement a annoncé de nouvelles mesures pour lutter contre le changement climatique, notamment une taxe sur les vols intérieurs de courte distance."
+  },
+  {
+    "id": "f003",
+    "lang": "de",
+    "source": "foreign",
+    "text": "Die Deutsche Bahn plant, ihr Hochgeschwindigkeitsnetz bis 2030 erheblich auszubauen, um die Reisezeiten zwischen den großen Städten zu verkürzen."
+  },
+  {
+    "id": "f004",
+    "lang": "ja",
+    "source": "foreign",
+    "text": "東京の桜は今年例年より一週間早く満開を迎えた。気象庁は温暖化の影響だと指摘している。"
+  },
+  {
+    "id": "f005",
+    "lang": "pt",
+    "source": "foreign",
+    "text": "A economia brasileira cresceu mais do que o esperado no último trimestre, impulsionada pelo consumo das famílias e pelas exportações agrícolas."
+  },
+  {
+    "id": "f006",
+    "lang": "it",
+    "source": "foreign",
+    "text": "La nuova legge sulla privacy digitale approvata dal parlamento italiano impone multe più severe alle aziende che non proteggono i dati degli utenti."
+  },
+  {
+    "id": "f007",
+    "lang": "zh",
+    "source": "foreign",
+    "text": "北京宣布将在今年年底前推出新的电动汽车补贴政策，以支持国内制造商在激烈的国际竞争中保持领先地位。"
+  },
+  {
+    "id": "f008",
+    "lang": "ru",
+    "source": "foreign",
+    "text": "Российские ученые сообщили об успешном испытании нового квантового процессора, способного решать задачи оптимизации значительно быстрее классических компьютеров."
+  },
+  {
+    "id": "f009",
+    "lang": "ko",
+    "source": "foreign",
+    "text": "삼성전자는 차세대 메모리 반도체의 대량 생산을 시작했으며, 이는 인공지능 서버 수요 급증에 대응하기 위한 것이라고 밝혔다."
+  },
+  {
+    "id": "f010",
+    "lang": "ar",
+    "source": "foreign",
+    "text": "أعلنت الحكومة عن خطة طموحة للاستثمار في الطاقة المتجددة بهدف تقليل الاعتماد على النفط خلال العقد المقبل."
+  },
+  {
+    "id": "t001",
+    "lang": "en",
+    "source": "tech",
+    "text": "A new Python release focuses on subinterpreter performance, enabling parallel execution of isolated interpreter instances inside a single process. Early benchmarks show throughput improvements of roughly 30 percent for CPU-bound workloads that previously were pinned by the global interpreter lock."
+  },
+  {
+    "id": "t002",
+    "lang": "en",
+    "source": "tech",
+    "text": "Rust's async ecosystem continues to consolidate around tokio, with new 'structured concurrency' primitives landing in the standard library that should make cancellation and timeout handling easier to reason about."
+  },
+  {
+    "id": "t003",
+    "lang": "en",
+    "source": "tech",
+    "text": "Postgres 18 ships with much improved parallel vacuum and a redesigned statistics collector. Users running large OLTP workloads report notable reductions in long-tail query latency."
+  },
+  {
+    "id": "t004",
+    "lang": "en",
+    "source": "tech",
+    "text": "Kubernetes 1.33 deprecates in-tree cloud providers. Operators who have not yet migrated to out-of-tree providers will see warnings on upgrade and should plan accordingly."
+  },
+  {
+    "id": "sc001",
+    "lang": "en",
+    "source": "science",
+    "text": "Astronomers have detected a steady radio signal from a nearby exoplanet system, though they cautioned that natural explanations remain likely. Follow-up observations using very long baseline interferometry are planned for next year."
+  },
+  {
+    "id": "sc002",
+    "lang": "en",
+    "source": "science",
+    "text": "A new analysis of CRISPR off-target effects found that most occur in non-coding regions and are unlikely to be clinically significant, but the study emphasized the need for ongoing long-term monitoring."
+  }
+]

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+wallets.json
+entity-secret-ciphertext.txt
+output/
+*.log
+.DS_Store
+dashboard/dist/
+dashboard/node_modules/

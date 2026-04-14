@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:developers.circle.com)",
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(npx hardhat:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsx:*)",
+      "WebFetch(domain:docs.arc.network)",
+      "Bash(npx tsc:*)",
+      "Bash(ls node_modules/@mistralai)",
+      "Bash(ls node_modules/mistralai)",
+      "Bash(DASHBOARD_PORT=8787 DASHBOARD_POLL_MS=60000 npm run dashboard)",
+      "Bash(curl -s -o /dev/null -w \"/: %{http_code}\\\\n\" http://localhost:8787/)",
+      "Bash(curl -s -o /dev/null -w \"css: %{http_code}\\\\n\" http://localhost:8787/styles.css)",
+      "Bash(curl -s -o /dev/null -w \"js: %{http_code}\\\\n\" http://localhost:8787/app.js)",
+      "Bash(curl -s http://localhost:8787/snapshot)",
+      "Bash(curl -s --max-time 3 -N http://localhost:8787/events)",
+      "Bash(taskkill //F //FI \"IMAGENAME eq node.exe\")",
+      "Bash(gh auth:*)"
+    ]
+  }
+}

@@ -3,8 +3,15 @@ import { env, loadWallets, type WalletRecord } from '../server/lib/config.js';
 import { SpecialistAgent, type AgentEvent } from '../server/agents/agent.js';
 import { SPECIALIST_ASSIGNMENTS } from '../server/agents/assignments.js';
 import { execContract, getUsdcBalance, transferUsdc } from '../server/lib/circle.js';
-import { getNextTaskId, getTask, marketAddress, TaskStatus } from '../server/lib/market.js';
+import {
+  getAssignmentTimeout,
+  getNextTaskId,
+  getTask,
+  marketAddress,
+  TaskStatus,
+} from '../server/lib/market.js';
 import { Mutex } from '../server/lib/mutex.js';
+import { gradeResult } from '../server/agents/grader.js';
 
 const APPROVAL_POLL_MS = 4000;
 
@@ -53,26 +60,97 @@ async function batchTopup(coordinator: WalletRecord, specialists: WalletRecord[]
   console.log();
 }
 
+async function authorizeSpecialists(coordinator: WalletRecord, specialists: WalletRecord[], lock: Mutex) {
+  console.log('Authorizing specialists on-chain (one-time per wallet)...');
+  for (const spec of specialists) {
+    const res = await lock.run(() =>
+      execContract({
+        walletId: coordinator.id,
+        contractAddress: marketAddress,
+        abiFunctionSignature: 'setSpecialist(address,bool)',
+        abiParameters: [spec.address, true],
+      }),
+    );
+    console.log(
+      `  ${spec.name.padEnd(14)} ${spec.address}  ${res.state === 'COMPLETE' ? '✓' : `✗ ${res.state}`}`,
+    );
+  }
+  console.log();
+}
+
 async function autoApprover(coordinator: WalletRecord, lock: Mutex) {
   const paid = new Set<string>();
+  const rejected = new Set<string>();
+  const reclaimed = new Set<string>();
+  const assignmentTimeoutSec = Number(await getAssignmentTimeout());
+  console.log(`[coordinator] grader + reclaim active (timeout ${assignmentTimeoutSec}s)`);
+
   while (true) {
     try {
       const next = await getNextTaskId();
+      const nowSec = Math.floor(Date.now() / 1000);
+
       for (let id = 1n; id < next; id++) {
-        if (paid.has(id.toString())) continue;
+        const idStr = id.toString();
+        if (paid.has(idStr) || rejected.has(idStr) || reclaimed.has(idStr)) continue;
         const t = await getTask(id);
+
+        // Stalled assignee — reclaim the escrow.
+        if (t.status === TaskStatus.Assigned) {
+          const assignedAt = Number(t.assignedAt);
+          if (assignedAt > 0 && nowSec - assignedAt > assignmentTimeoutSec) {
+            console.log(`[coordinator] ⏱  reclaim #${id} (stalled ${nowSec - assignedAt}s)`);
+            const rec = await lock.run(() =>
+              execContract({
+                walletId: coordinator.id,
+                contractAddress: marketAddress,
+                abiFunctionSignature: 'reclaimExpiredAssignment(uint256)',
+                abiParameters: [idStr],
+              }),
+            );
+            if (rec.state === 'COMPLETE') {
+              reclaimed.add(idStr);
+              console.log(`[coordinator]    reclaimed #${id} ${rec.txHash}`);
+            } else {
+              console.log(`[coordinator]    ✗ reclaim #${id} ${rec.state} ${rec.errorReason ?? ''}`);
+            }
+          }
+          continue;
+        }
+
         if (t.status !== TaskStatus.Completed) continue;
-        console.log(`[coordinator] 💰 approveAndPay #${id} → ${t.assignee.slice(0, 10)}…`);
+
+        // Grade the result before paying.
+        let verdict;
+        try {
+          verdict = await gradeResult(t.taskType, t.inputCID, t.resultCID);
+        } catch (e: any) {
+          console.log(`[coordinator] ⚠ grader error on #${id}: ${e?.message ?? e} — skipping`);
+          continue;
+        }
+
+        if (!verdict.pass) {
+          rejected.add(idStr);
+          console.log(
+            `[coordinator] ✗ reject #${id} score=${verdict.score}/10 — ${verdict.reason}`,
+          );
+          // Escrow stays until reclaim timeout elapses, then refunded to poster.
+          continue;
+        }
+
+        console.log(
+          `[coordinator] 💰 approveAndPay #${id} → ${t.assignee.slice(0, 10)}… (score=${verdict.score})`,
+        );
         const res = await lock.run(() =>
           execContract({
             walletId: coordinator.id,
             contractAddress: marketAddress,
             abiFunctionSignature: 'approveAndPay(uint256)',
-            abiParameters: [id.toString()],
+            abiParameters: [idStr],
           }),
         );
         if (res.state === 'COMPLETE') {
-          paid.add(id.toString());
+          paid.add(idStr);
           console.log(`[coordinator]    paid #${id} ${res.txHash}`);
         } else {
           console.log(`[coordinator]    ✗ #${id} ${res.state} ${res.errorReason ?? ''}`);
@@ -90,9 +168,10 @@ async function main() {
   const coordinator = wallets.find((w) => w.role === 'coordinator')!;
   const specialists = wallets.filter((w) => w.role === 'specialist');
 
-  await batchTopup(coordinator, specialists);
-
   const funderLock = new Mutex();
+  await batchTopup(coordinator, specialists);
+  await authorizeSpecialists(coordinator, specialists, funderLock);
+
   const agents: SpecialistAgent[] = [];
   for (const [i, wallet] of specialists.entries()) {
     const caps = SPECIALIST_ASSIGNMENTS[i] ?? ['summarize'];

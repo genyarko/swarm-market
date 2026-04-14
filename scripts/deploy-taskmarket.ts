@@ -9,6 +9,7 @@ const {
   CIRCLE_API_KEY,
   CIRCLE_ENTITY_SECRET,
   CIRCLE_BLOCKCHAIN = 'ARC-TESTNET',
+  ASSIGNMENT_TIMEOUT_SECONDS = '1800',
 } = process.env;
 
 if (!CIRCLE_API_KEY || !CIRCLE_ENTITY_SECRET) {
@@ -67,7 +68,9 @@ async function main() {
 
   console.log(`Deploying TaskMarket on ${CIRCLE_BLOCKCHAIN}`);
   console.log(`  from coordinator ${coordinator.address} (walletId ${coordinator.id})`);
-  console.log(`  constructor arg usdc = ${ARC_TESTNET_USDC}\n`);
+  console.log(`  usdc              = ${ARC_TESTNET_USDC}`);
+  console.log(`  coordinator       = ${coordinator.address}`);
+  console.log(`  assignmentTimeout = ${ASSIGNMENT_TIMEOUT_SECONDS}s\n`);
 
   const scp = initiateSmartContractPlatformClient({
     apiKey: CIRCLE_API_KEY!,
@@ -85,7 +88,7 @@ async function main() {
     walletId: coordinator.id,
     abiJson: JSON.stringify(abi),
     bytecode,
-    constructorParameters: [ARC_TESTNET_USDC],
+    constructorParameters: [ARC_TESTNET_USDC, coordinator.address, ASSIGNMENT_TIMEOUT_SECONDS],
     fee: { type: 'level', config: { feeLevel: 'MEDIUM' } },
   });
 

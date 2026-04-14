@@ -7,8 +7,10 @@ interface IERC20 {
 }
 
 /// @title TaskMarket — atomic pay-on-completion micro-task registry
-/// @notice Coordinator posts tasks and escrows the reward. Specialists bid (first wins),
-///         submit a result, and on approval the reward is atomically transferred in USDC.
+/// @notice Coordinator posts tasks and escrows the reward. Whitelisted specialists
+///         bid (first wins), submit a result, and on approval the reward is atomically
+///         transferred in USDC. If an assignee stalls past the timeout, the poster
+///         can reclaim the escrow.
 contract TaskMarket {
     enum Status { Open, Assigned, Completed, Paid, Cancelled }
 
@@ -21,31 +23,53 @@ contract TaskMarket {
         string  resultCID;
         uint256 reward;
         Status  status;
+        uint64  assignedAt;
     }
 
     IERC20  public immutable usdc;
+    address public immutable coordinator;
+    uint64  public immutable assignmentTimeout; // seconds
     uint256 public nextTaskId = 1;
     mapping(uint256 => Task) private _tasks;
+    mapping(address => bool) public isSpecialist;
 
     event TaskPosted(uint256 indexed id, address indexed poster, string taskType, string inputCID, uint256 reward);
     event TaskAssigned(uint256 indexed id, address indexed assignee);
     event TaskCompleted(uint256 indexed id, string resultCID);
     event TaskPaid(uint256 indexed id, address indexed assignee, uint256 reward);
     event TaskCancelled(uint256 indexed id);
+    event TaskReclaimed(uint256 indexed id, address indexed expiredAssignee);
+    event SpecialistAuthorized(address indexed who, bool allowed);
 
     error NotOpen();
     error NotAssigned();
     error NotCompleted();
     error NotPoster();
+    error NotCoordinator();
+    error NotWhitelisted();
+    error NotExpired();
     error OnlyAssignee();
     error TransferFailed();
 
-    constructor(address usdcAddress) {
+    constructor(address usdcAddress, address coordinator_, uint64 assignmentTimeoutSeconds) {
         usdc = IERC20(usdcAddress);
+        coordinator = coordinator_;
+        assignmentTimeout = assignmentTimeoutSeconds;
+    }
+
+    modifier onlyCoordinator() {
+        if (msg.sender != coordinator) revert NotCoordinator();
+        _;
+    }
+
+    function setSpecialist(address who, bool allowed) external onlyCoordinator {
+        isSpecialist[who] = allowed;
+        emit SpecialistAuthorized(who, allowed);
     }
 
     function postTask(string calldata taskType, string calldata inputCID, uint256 reward)
         external
+        onlyCoordinator
         returns (uint256 id)
     {
         id = nextTaskId++;
@@ -57,17 +81,20 @@ contract TaskMarket {
             inputCID: inputCID,
             resultCID: "",
             reward: reward,
-            status: Status.Open
+            status: Status.Open,
+            assignedAt: 0
         });
         if (!usdc.transferFrom(msg.sender, address(this), reward)) revert TransferFailed();
         emit TaskPosted(id, msg.sender, taskType, inputCID, reward);
     }
 
     function bidOnTask(uint256 id) external {
+        if (!isSpecialist[msg.sender]) revert NotWhitelisted();
         Task storage t = _tasks[id];
         if (t.status != Status.Open) revert NotOpen();
         t.assignee = msg.sender;
         t.status = Status.Assigned;
+        t.assignedAt = uint64(block.timestamp);
         emit TaskAssigned(id, msg.sender);
     }
 
@@ -96,6 +123,19 @@ contract TaskMarket {
         t.status = Status.Cancelled;
         if (!usdc.transfer(t.poster, t.reward)) revert TransferFailed();
         emit TaskCancelled(id);
+    }
+
+    /// @notice Poster reclaims escrow from a stalled assignee after the timeout.
+    /// @dev Refunds the poster and marks the task Cancelled to prevent further state changes.
+    function reclaimExpiredAssignment(uint256 id) external {
+        Task storage t = _tasks[id];
+        if (t.status != Status.Assigned) revert NotAssigned();
+        if (msg.sender != t.poster) revert NotPoster();
+        if (block.timestamp < uint256(t.assignedAt) + uint256(assignmentTimeout)) revert NotExpired();
+        address expired = t.assignee;
+        t.status = Status.Cancelled;
+        if (!usdc.transfer(t.poster, t.reward)) revert TransferFailed();
+        emit TaskReclaimed(id, expired);
     }
 
     function getTask(uint256 id) external view returns (Task memory) {

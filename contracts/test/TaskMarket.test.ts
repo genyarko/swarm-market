@@ -3,6 +3,7 @@ import { ethers } from 'hardhat';
 import type { TaskMarket, MockUSDC } from '../typechain-types';
 
 const REWARD = 3000n; // 0.003 USDC at 6 decimals
+const TIMEOUT = 60n; // 60s assignment timeout
 
 describe('TaskMarket', () => {
   async function deploy() {
@@ -13,11 +14,19 @@ describe('TaskMarket', () => {
     await usdc.waitForDeployment();
 
     const Market = await ethers.getContractFactory('TaskMarket');
-    const market = (await Market.deploy(await usdc.getAddress())) as unknown as TaskMarket;
+    const market = (await Market.deploy(
+      await usdc.getAddress(),
+      coordinator.address,
+      TIMEOUT,
+    )) as unknown as TaskMarket;
     await market.waitForDeployment();
 
     await usdc.mint(coordinator.address, 10_000_000n); // 10 USDC
     await usdc.connect(coordinator).approve(await market.getAddress(), ethers.MaxUint256);
+
+    // Authorize the two test specialists.
+    await market.connect(coordinator).setSpecialist(agent1.address, true);
+    await market.connect(coordinator).setSpecialist(agent2.address, true);
 
     return { market, usdc, coordinator, agent1, agent2, outsider };
   }
@@ -101,5 +110,63 @@ describe('TaskMarket', () => {
     }
     expect(await usdc.balanceOf(agent1.address)).to.equal(agentBefore + REWARD * 10n);
     expect(await usdc.balanceOf(marketAddr)).to.equal(0n);
+  });
+
+  it('rejects postTask from non-coordinator', async () => {
+    const { market, agent1 } = await deploy();
+    await expect(market.connect(agent1).postTask('summarize', 'ipfs://x', REWARD))
+      .to.be.revertedWithCustomError(market, 'NotCoordinator');
+  });
+
+  it('rejects bid from non-whitelisted address', async () => {
+    const { market, coordinator, outsider } = await deploy();
+    await market.connect(coordinator).postTask('summarize', 'ipfs://x', REWARD);
+    await expect(market.connect(outsider).bidOnTask(1))
+      .to.be.revertedWithCustomError(market, 'NotWhitelisted');
+  });
+
+  it('coordinator can revoke a specialist', async () => {
+    const { market, coordinator, agent1 } = await deploy();
+    await market.connect(coordinator).setSpecialist(agent1.address, false);
+    await market.connect(coordinator).postTask('summarize', 'ipfs://x', REWARD);
+    await expect(market.connect(agent1).bidOnTask(1))
+      .to.be.revertedWithCustomError(market, 'NotWhitelisted');
+  });
+
+  it('rejects reclaim before timeout', async () => {
+    const { market, coordinator, agent1 } = await deploy();
+    await market.connect(coordinator).postTask('summarize', 'ipfs://x', REWARD);
+    await market.connect(agent1).bidOnTask(1);
+    await expect(market.connect(coordinator).reclaimExpiredAssignment(1))
+      .to.be.revertedWithCustomError(market, 'NotExpired');
+  });
+
+  it('poster reclaims escrow from stalled assignee after timeout', async () => {
+    const { market, usdc, coordinator, agent1 } = await deploy();
+    const before = await usdc.balanceOf(coordinator.address);
+    await market.connect(coordinator).postTask('summarize', 'ipfs://x', REWARD);
+    await market.connect(agent1).bidOnTask(1);
+
+    // fast-forward past the timeout
+    await ethers.provider.send('evm_increaseTime', [Number(TIMEOUT) + 1]);
+    await ethers.provider.send('evm_mine', []);
+
+    await expect(market.connect(coordinator).reclaimExpiredAssignment(1))
+      .to.emit(market, 'TaskReclaimed')
+      .withArgs(1n, agent1.address);
+
+    expect(await usdc.balanceOf(coordinator.address)).to.equal(before);
+    const task = await market.getTask(1);
+    expect(task.status).to.equal(4); // Cancelled
+  });
+
+  it('only poster can reclaim', async () => {
+    const { market, coordinator, agent1, outsider } = await deploy();
+    await market.connect(coordinator).postTask('summarize', 'ipfs://x', REWARD);
+    await market.connect(agent1).bidOnTask(1);
+    await ethers.provider.send('evm_increaseTime', [Number(TIMEOUT) + 1]);
+    await ethers.provider.send('evm_mine', []);
+    await expect(market.connect(outsider).reclaimExpiredAssignment(1))
+      .to.be.revertedWithCustomError(market, 'NotPoster');
   });
 });

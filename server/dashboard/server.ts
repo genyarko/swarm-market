@@ -20,6 +20,7 @@ import { loadWallets, type WalletRecord } from '../lib/config.js';
 const PORT = Number(process.env.PORT ?? process.env.DASHBOARD_PORT ?? 8787);
 const POLL_MS = Number(process.env.DASHBOARD_POLL_MS ?? 2000);
 const TRAD_GAS_PER_TX_USDC = Number(process.env.TRAD_GAS_PER_TX_USDC ?? 0.05);
+const MAX_SSE_CLIENTS = Number(process.env.MAX_SSE_CLIENTS ?? 50);
 const DASHBOARD_DIR = fileURLToPath(new URL('../../dashboard/', import.meta.url));
 
 type StoredTask = {
@@ -277,6 +278,11 @@ const server = http.createServer((req, res) => {
   const url = req.url ?? '/';
 
   if (url === '/events') {
+    if (clients.size >= MAX_SSE_CLIENTS) {
+      res.writeHead(503, { 'content-type': 'text/plain', 'access-control-allow-origin': '*' });
+      res.end('Too many dashboard clients — try again shortly');
+      return;
+    }
     res.writeHead(200, {
       'content-type': 'text/event-stream',
       'cache-control': 'no-cache',

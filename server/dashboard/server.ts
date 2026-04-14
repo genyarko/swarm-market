@@ -17,7 +17,7 @@ import { loadWallets, type WalletRecord } from '../lib/config.js';
  * starts with no extra install step.
  */
 
-const PORT = Number(process.env.DASHBOARD_PORT ?? 8787);
+const PORT = Number(process.env.PORT ?? process.env.DASHBOARD_PORT ?? 8787);
 const POLL_MS = Number(process.env.DASHBOARD_POLL_MS ?? 2000);
 const TRAD_GAS_PER_TX_USDC = Number(process.env.TRAD_GAS_PER_TX_USDC ?? 0.05);
 const DASHBOARD_DIR = fileURLToPath(new URL('../../dashboard/', import.meta.url));

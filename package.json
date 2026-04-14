@@ -14,6 +14,7 @@
     "run-agents": "tsx scripts/run-agents.ts",
     "run-coordinator": "tsx scripts/run-coordinator.ts",
     "dashboard": "tsx server/dashboard/server.ts",
+    "start": "tsx server/dashboard/server.ts",
     "compile-contracts": "cd contracts && npx hardhat compile",
     "test-contracts": "cd contracts && npx hardhat test",
     "typecheck": "tsc --noEmit"

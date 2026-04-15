@@ -44,24 +44,27 @@ CORS is `*` by design (public read-only dashboard). Nothing caps the number of o
 
 ## Low / informational
 
-### L1. ERC-20 return-value assumption
-**Location:** `TaskMarket.sol` `postTask`, `approveAndPay`, `cancelOpenTask`.
-Code checks `usdc.transfer*` return values. USDC conforms, so fine. Using OpenZeppelin `SafeERC20` would make the contract robust to non-conforming tokens if the token address ever changes.
+### L1. ERC-20 return-value assumption — RESOLVED 2026-04-15
+**Location:** `TaskMarket.sol` `postTask`, `approveAndPay`, `cancelOpenTask`, `reclaimExpiredAssignment`.
+Refactored to OpenZeppelin `SafeERC20`: `safeTransfer` / `safeTransferFrom` now wrap every USDC movement, so the contract handles non-conforming tokens correctly if the token address is ever changed. `TransferFailed` custom error removed (SafeERC20 reverts with its own messages). All 12 hardhat tests pass.
 
-### L2. CEI pattern OK
-`approveAndPay` and `cancelOpenTask` update status before the external transfer, so reentrancy is not exploitable.
+### L2. CEI pattern OK — no action needed
+`approveAndPay`, `cancelOpenTask`, and `reclaimExpiredAssignment` update status before the external transfer, so reentrancy is not exploitable. Still holds after the SafeERC20 refactor.
 
-### L3. No admin / pause
-Intentional for decentralization; means a contract bug cannot be mitigated post-deploy.
+### L3. No admin / pause — accepted as-is
+Intentional for decentralization; means a contract bug cannot be mitigated post-deploy. No change made — adding a pause role would reverse the original design decision.
 
-### L4. `npm audit` not run
-Run `npm audit --omit=dev` on both the root and `contracts/` workspaces to catch transitive CVEs.
+### L4. `npm audit` — RESOLVED 2026-04-15
+`npm audit --omit=dev` run on both workspaces:
+- root: `found 0 vulnerabilities`
+- `contracts/`: `found 0 vulnerabilities`
 
 ## Recommended next steps (priority order)
 
 1. Implement LLM-grader verification in `autoApprover` (addresses H1).
 2. Add assignment deadline + reclaim path on the contract (addresses H2).
-3. Run `npm audit --omit=dev` on root and `contracts/` and pin anything flagged (L4).
+3. ~~Run `npm audit --omit=dev` on root and `contracts/` and pin anything flagged (L4).~~ Done 2026-04-15 — both clean.
 4. Whitelist specialist addresses or coordinator-gate bidding (addresses H3).
 5. Restrict `postTask` to coordinator or sanitize inputs when third-party posting is enabled (addresses M1).
 6. Cap SSE client count on dashboard (addresses M3).
+7. ~~Switch to SafeERC20 for token transfers (L1).~~ Done 2026-04-15.

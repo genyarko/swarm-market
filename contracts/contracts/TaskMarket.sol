@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-interface IERC20 {
-    function transfer(address to, uint256 amount) external returns (bool);
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
-}
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /// @title TaskMarket — atomic pay-on-completion micro-task registry
 /// @notice Coordinator posts tasks and escrows the reward. Whitelisted specialists
@@ -12,6 +10,7 @@ interface IERC20 {
 ///         transferred in USDC. If an assignee stalls past the timeout, the poster
 ///         can reclaim the escrow.
 contract TaskMarket {
+    using SafeERC20 for IERC20;
     enum Status { Open, Assigned, Completed, Paid, Cancelled }
 
     struct Task {
@@ -49,7 +48,6 @@ contract TaskMarket {
     error NotWhitelisted();
     error NotExpired();
     error OnlyAssignee();
-    error TransferFailed();
 
     constructor(address usdcAddress, address coordinator_, uint64 assignmentTimeoutSeconds) {
         usdc = IERC20(usdcAddress);
@@ -84,7 +82,7 @@ contract TaskMarket {
             status: Status.Open,
             assignedAt: 0
         });
-        if (!usdc.transferFrom(msg.sender, address(this), reward)) revert TransferFailed();
+        usdc.safeTransferFrom(msg.sender, address(this), reward);
         emit TaskPosted(id, msg.sender, taskType, inputCID, reward);
     }
 
@@ -112,7 +110,7 @@ contract TaskMarket {
         if (t.status != Status.Completed) revert NotCompleted();
         if (msg.sender != t.poster) revert NotPoster();
         t.status = Status.Paid;
-        if (!usdc.transfer(t.assignee, t.reward)) revert TransferFailed();
+        usdc.safeTransfer(t.assignee, t.reward);
         emit TaskPaid(id, t.assignee, t.reward);
     }
 
@@ -121,7 +119,7 @@ contract TaskMarket {
         if (t.status != Status.Open) revert NotOpen();
         if (msg.sender != t.poster) revert NotPoster();
         t.status = Status.Cancelled;
-        if (!usdc.transfer(t.poster, t.reward)) revert TransferFailed();
+        usdc.safeTransfer(t.poster, t.reward);
         emit TaskCancelled(id);
     }
 
@@ -134,7 +132,7 @@ contract TaskMarket {
         if (block.timestamp < uint256(t.assignedAt) + uint256(assignmentTimeout)) revert NotExpired();
         address expired = t.assignee;
         t.status = Status.Cancelled;
-        if (!usdc.transfer(t.poster, t.reward)) revert TransferFailed();
+        usdc.safeTransfer(t.poster, t.reward);
         emit TaskReclaimed(id, expired);
     }
 

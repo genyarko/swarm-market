@@ -4,7 +4,12 @@ import { readFileSync, existsSync } from 'node:fs';
 import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getNextTaskId, getTask, marketAddress, TaskStatus } from '../lib/market.js';
-import { loadWallets, type WalletRecord } from '../lib/config.js';
+import { chainConfig, env, loadWallets, type WalletRecord } from '../lib/config.js';
+import {
+  X402Facilitator,
+  x402Gate,
+  type X402PaymentRequirements,
+} from '../lib/x402.js';
 
 /**
  * Lightweight dashboard server:
@@ -129,6 +134,13 @@ function computeStats() {
     throughputTasksPerSec: throughput,
     tradGasUsdc: posted * TRAD_GAS_PER_TX_USDC,
     arcGasUsdc: 0,
+    txCount: allTasks.reduce((sum, t) => {
+      let n = 1; // postTask
+      if (t.status >= TaskStatus.Assigned) n++;
+      if (t.status >= TaskStatus.Completed) n++;
+      if (t.status === TaskStatus.Paid) n++;
+      return sum + n;
+    }, 0),
   };
 }
 
@@ -274,8 +286,79 @@ function serveStatic(req: http.IncomingMessage, res: http.ServerResponse) {
   res.end(readFileSync(full));
 }
 
+const x402Facilitator = new X402Facilitator();
+const premiumPriceAtomic = BigInt(Math.round(env.x402PremiumPriceUsdc * 1_000_000));
+
+function premiumRequirements(req: http.IncomingMessage): X402PaymentRequirements {
+  const resource = `http://${req.headers.host ?? 'localhost'}${req.url}`;
+  return {
+    scheme: 'exact',
+    network: chainConfig.network,
+    maxAmountRequired: premiumPriceAtomic.toString(),
+    resource,
+    description: `Premium agent-swarm data — ${env.x402PremiumPriceUsdc} USDC per request`,
+    mimeType: 'application/json',
+    payTo: coordinator?.address ?? '0x0000000000000000000000000000000000000000',
+    maxTimeoutSeconds: 120,
+    asset: chainConfig.usdcAddress,
+    extra: { name: chainConfig.usdcName, version: chainConfig.usdcVersion },
+  };
+}
+
+const premiumGate = x402Gate({
+  facilitator: x402Facilitator,
+  requirements: premiumRequirements,
+  settle: false, // verification-only; settlement deferred to Circle batch
+});
+
+async function handlePremium(
+  req: http.IncomingMessage,
+  res: http.ServerResponse,
+  body: () => unknown,
+) {
+  try {
+    await premiumGate(req, res, () => {
+      res.writeHead(200, {
+        'content-type': 'application/json',
+        'access-control-allow-origin': '*',
+        'access-control-expose-headers': 'x-payment-response',
+      });
+      res.end(JSON.stringify(body(), jsonReplacer));
+    });
+  } catch (e) {
+    res.writeHead(500, { 'content-type': 'text/plain' });
+    res.end(`x402 gate error: ${(e as Error).message}`);
+  }
+}
+
 const server = http.createServer((req, res) => {
   const url = req.url ?? '/';
+
+  if (url === '/x402/info') {
+    res.writeHead(200, { 'content-type': 'application/json', 'access-control-allow-origin': '*' });
+    res.end(JSON.stringify({
+      network: chainConfig.network,
+      chainId: chainConfig.chainId,
+      asset: chainConfig.usdcAddress,
+      payTo: coordinator?.address ?? '',
+      pricePerRequestUsdc: env.x402PremiumPriceUsdc,
+      endpoints: ['/premium/snapshot', '/premium/tasks', '/premium/stats'],
+    }));
+    return;
+  }
+
+  if (url === '/premium/snapshot') {
+    void handlePremium(req, res, () => snapshot());
+    return;
+  }
+  if (url === '/premium/stats') {
+    void handlePremium(req, res, () => computeStats());
+    return;
+  }
+  if (url.startsWith('/premium/tasks')) {
+    void handlePremium(req, res, () => Array.from(tasks.values()).slice(-50));
+    return;
+  }
 
   if (url === '/events') {
     if (clients.size >= MAX_SSE_CLIENTS) {

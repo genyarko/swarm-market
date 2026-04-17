@@ -9,18 +9,24 @@
     "create-wallets": "tsx scripts/create-wallets.ts",
     "send-nanopayment": "tsx scripts/send-nanopayment.ts",
     "deploy-taskmarket": "tsx scripts/deploy-taskmarket.ts",
+    "deploy-registry": "tsx scripts/deploy-registry.ts",
+    "register-agents": "tsx scripts/register-agents.ts",
     "taskmarket-lifecycle": "tsx scripts/taskmarket-lifecycle.ts",
     "seed-tasks": "tsx scripts/seed-tasks.ts",
     "run-agents": "tsx scripts/run-agents.ts",
     "run-coordinator": "tsx scripts/run-coordinator.ts",
     "dashboard": "tsx server/dashboard/server.ts",
     "start": "tsx server/dashboard/server.ts",
+    "nano-seller": "tsx server/dashboard/nano-seller.ts",
+    "nano-buyer": "tsx scripts/nano-buyer.ts",
+    "tx-report": "tsx scripts/tx-report.ts",
+    "demo": "concurrently --names dashboard,agents,coordinator -c cyan,green,yellow \"npm run dashboard\" \"npm run run-agents\" \"npm run run-coordinator\"",
     "compile-contracts": "cd contracts && npx hardhat compile",
     "test-contracts": "cd contracts && npx hardhat test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.27.0",
+    "@anthropic-ai/sdk": "^0.39.0",
     "@circle-fin/developer-controlled-wallets": "^7.0.0",
     "@circle-fin/smart-contract-platform": "^2.0.0",
     "dotenv": "^16.4.5",
@@ -29,7 +35,13 @@
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   },
+  "optionalDependencies": {
+    "@circle-fin/x402-batching": "*",
+    "express": "^4.19.2",
+    "viem": "^2.21.0"
+  },
   "devDependencies": {
-    "@types/node": "^20.12.12"
+    "@types/node": "^20.12.12",
+    "concurrently": "^9.0.0"
   }
 }

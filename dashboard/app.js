@@ -129,6 +129,8 @@ function renderStats() {
   $('s-completed').textContent = s.paid;
   $('s-avg').textContent = s.avgCompletionSec ? `${s.avgCompletionSec.toFixed(1)}s` : '—';
   $('s-avgcost').textContent = s.avgCostUsdc ? `$${s.avgCostUsdc.toFixed(4)}` : '—';
+  const tc = s.txCount ?? 0;
+  $('s-txcount').textContent = tc >= 50 ? `${tc} ✅` : String(tc);
   $('s-tput').textContent = `${s.throughputTasksPerSec.toFixed(2)}/s`;
   $('s-spent').textContent = `$${s.totalSpentUsdc.toFixed(4)}`;
   $('g-trad').textContent = `$${s.tradGasUsdc.toFixed(2)}`;

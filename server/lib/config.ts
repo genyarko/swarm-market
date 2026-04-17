@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { readFileSync } from 'node:fs';
+import { chainByCircle, type ChainConfig } from './chains.js';
 
 export type WalletRecord = {
   role: 'coordinator' | 'specialist' | 'treasury';
@@ -18,17 +19,31 @@ export type Deployment = {
   txHash: string;
 };
 
+const circleBlockchain = (process.env.CIRCLE_BLOCKCHAIN ?? 'ARC-TESTNET').toUpperCase();
+const chain = chainByCircle(circleBlockchain);
+if (!chain) {
+  throw new Error(
+    `Unsupported CIRCLE_BLOCKCHAIN=${circleBlockchain}. Supported: see server/lib/chains.ts`,
+  );
+}
+
 export const env = {
   circleApiKey: required('CIRCLE_API_KEY'),
   circleEntitySecret: required('CIRCLE_ENTITY_SECRET'),
-  blockchain: process.env.CIRCLE_BLOCKCHAIN ?? 'ARC-TESTNET',
-  arcRpcUrl: process.env.ARC_RPC_URL ?? 'https://rpc.testnet.arc.network',
-  usdcAddress: '0x3600000000000000000000000000000000000000',
-  mistralApiKey: process.env.MISTRAL_API_KEY ?? '',
+  blockchain: chain.circle,
+  chain,
+  arcRpcUrl: process.env.ARC_RPC_URL ?? chain.rpcUrl,
+  usdcAddress: process.env.USDC_ADDRESS ?? chain.usdcAddress,
+  llmProvider: (process.env.LLM_PROVIDER ?? 'mistral').toLowerCase() as 'claude' | 'mistral',
   mistralModel: process.env.MISTRAL_MODEL ?? 'mistral-small-latest',
+  anthropicModel: process.env.ANTHROPIC_MODEL ?? 'claude-haiku-4-5-20251001',
   agentPollMs: Number(process.env.AGENT_POLL_MS ?? 1500),
   agentGasFloorUsdc: Number(process.env.AGENT_GAS_FLOOR_USDC ?? 0.1),
+  x402FacilitatorUrl: process.env.X402_FACILITATOR_URL ?? '',
+  x402PremiumPriceUsdc: Number(process.env.X402_PREMIUM_PRICE_USDC ?? 0.001),
 };
+
+export const chainConfig: ChainConfig = chain;
 
 function required(key: string): string {
   const v = process.env[key];

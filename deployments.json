@@ -1,10 +1,10 @@
 {
   "contractName": "TaskMarket",
-  "contractId": "019d8aae-6d5f-7668-bc23-30faa51f4108",
-  "address": "0x0b0ff223e0315aca6d14462d1d7a2295eceb2fb0",
+  "contractId": "019d95b4-e275-7478-9133-e3d64a5e199f",
+  "address": "0x821c0ee80e6cdcd09dc2719d25fce426db634de5",
   "blockchain": "ARC-TESTNET",
   "usdc": "0x3600000000000000000000000000000000000000",
   "deployer": "0x7cc91c5b241db69f2aedd3d0342e7f8b6a9d558e",
-  "txHash": "0x10cd777a82498cf392db2f122153993a8928c8f2fd1f23406327045162f694a0",
-  "deployedAt": "2026-04-14T06:29:43.437Z"
+  "txHash": "0x0eff54ae5147b811e1461bce5a129c7f8a1e58d4218f192f466e086c13a6e77a",
+  "deployedAt": "2026-04-16T09:52:36.487Z"
 }

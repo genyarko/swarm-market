@@ -1,0 +1,9 @@
+{
+  "contractName": "AgentRegistry",
+  "contractId": "019d954f-5b94-7513-925f-690d9cd6163b",
+  "address": "0x7eda02b78eb8003e82079d72943408c2e14ec393",
+  "blockchain": "ARC-TESTNET",
+  "deployer": "0x7cc91c5b241db69f2aedd3d0342e7f8b6a9d558e",
+  "txHash": "0x2f9ede1e44f5722e407e1dfa1601da67ee8a11ea5bca8e3988b5d9bd55113b9d",
+  "deployedAt": "2026-04-16T08:01:42.866Z"
+}

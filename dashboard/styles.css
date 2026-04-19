@@ -115,7 +115,6 @@ body {
 
 .panel {
   background: var(--bg-2);
-  border: 1px solid var(--border);
   border-radius: var(--radius);
   display: flex;
   flex-direction: column;
@@ -156,18 +155,15 @@ body {
   align-content: start;
 }
 .agent-card {
-  background: var(--bg-3);
-  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   position: relative;
-  transition: border-color 0.3s, transform 0.2s;
+  transition: box-shadow 0.3s, transform 0.2s;
 }
 .agent-card.working {
-  border-color: var(--accent);
   box-shadow: 0 0 0 1px rgba(94, 245, 198, 0.2), 0 0 24px rgba(94, 245, 198, 0.08);
 }
 .agent-card .row {
@@ -235,7 +231,6 @@ body {
   grid-template-columns: 54px 20px 1fr;
   gap: 10px;
   padding: 7px 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
   align-items: baseline;
 }
 .feed li.enter { animation: slideIn 0.35s ease-out; }
@@ -265,8 +260,6 @@ body {
 .flow .coord {
   width: 160px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(107,168,255,0.15), rgba(107,168,255,0.04));
-  border: 1px solid rgba(107,168,255,0.4);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -360,8 +353,6 @@ body {
   flex-direction: column;
   gap: 4px;
   padding: 12px 14px;
-  background: var(--bg-3);
-  border: 1px solid var(--border);
   border-radius: 8px;
 }
 .stat-label {
@@ -379,14 +370,11 @@ body {
 
 .gas-hero {
   margin: 0 18px 18px 18px;
-  padding: 16px 18px;
-  background:
-    linear-gradient(135deg, rgba(255,107,125,0.08), rgba(94,245,198,0.08));
-  border: 1px solid var(--border-strong);
+  padding: 16px 14px;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
   align-items: center;
 }
 .gas-line {

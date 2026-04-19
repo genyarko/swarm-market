@@ -97,7 +97,7 @@ real time, trustless, no batching or custodian.
 
 ## 📸 Cover Image / Video / Slides
 
-- **Cover image**: screenshot of `https://swarm-market.up.railway.app` dashboard during a
+- **Cover image**: screenshot of `https://swarm-market-production.up.railway.app` dashboard during a
   50+ tx run (agent cards active, flow graph animating, gas comparison panel
   showing $X trad vs $0 Arc).
 - **Video presentation**: see §"Transaction Flow Demonstration (Video)" below.
@@ -112,7 +112,7 @@ real time, trustless, no batching or custodian.
 https://github.com/genyarko/swarm-market
 
 ### Application URL (hosted demo)
-Railway deployment — `https://swarm-market.up.railway.app` (dashboard only,
+Railway deployment — `https://swarm-market-production.up.railway.app` (dashboard only,
 read-only).
 
 ### Run locally
@@ -126,7 +126,7 @@ npm run deploy-registry
 npm run register-agents
 npm run run-coordinator      # begins posting tasks from seed dataset
 npm run run-agents           # spawns 8 specialists + auto-approver
-npm run dashboard            # https://swarm-market.up.railway.app
+npm run dashboard            # https://swarm-market-production.up.railway.app
 # Nanopayments track:
 npm run nano-seller          # http://localhost:8788  (Circle Gateway middleware)
 npm run nano-buyer           # deposit → 60 paid calls
@@ -160,7 +160,7 @@ Developer Console and verified on the Arc Block Explorer.
 5. `[00:40]` Open https://explorer.testnet.arc.network → paste hash →
    show the decoded `TaskPosted` event, the USDC transferFrom trace, and the
    block confirmation time (~1s).
-6. `[01:00]` Switch to the dashboard (`https://swarm-market.up.railway.app`) — show the
+6. `[01:00]` Switch to the dashboard (`https://swarm-market-production.up.railway.app`) — show the
    same task appearing in the live feed within one poll cycle.
 7. `[01:15]` Show the "50+ txs" stat and the gas-cost comparison panel.
 8. `[01:25]` Cut to `tx-report.md` scrolling through the full event list

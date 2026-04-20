@@ -131,7 +131,8 @@ export class SpecialistAgent {
       return;
     }
 
-    const trimmed = result.length > 900 ? result.slice(0, 900) + '…' : result;
+    const normalized = normalizeResult(cap, result);
+    const trimmed = normalized.length > 900 ? normalized.slice(0, 900) + '…' : normalized;
     const res = await execContract({
       walletId: this.wallet.id,
       contractAddress: marketAddress,
@@ -174,4 +175,30 @@ export class SpecialistAgent {
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+function normalizeResult(cap: Capability, raw: string): string {
+  const text = raw.trim();
+  if (!text) return '[empty]';
+
+  if (cap === 'sentiment') {
+    const lower = text.toLowerCase();
+    const match = lower.match(/\b(positive|neutral|negative)\b/);
+    if (match) return match[1]!;
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      try {
+        const parsed = JSON.parse(jsonMatch[0]);
+        if (typeof parsed.label === 'string') {
+          const label = parsed.label.toLowerCase();
+          if (label === 'positive' || label === 'neutral' || label === 'negative') return label;
+        }
+      } catch {
+        // ignore; fallback below
+      }
+    }
+    return 'neutral';
+  }
+
+  return text;
 }

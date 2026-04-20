@@ -117,5 +117,6 @@ Submission field required by the hackathon. Eligible for the $500 USDC
 - Buyer wired with the official SDK: `scripts/nano-buyer.ts`
 - Margin math (≤ $0.01 per action): `MARGIN.md`
 - 50+ on-chain tx proof: `npm run tx-report` → `tx-report.md` / `tx-report.csv`
+  - Latest online-run artifact: **155 unique on-chain txs** (contract `0x821c0ee80e6cdcd09dc2719d25fce426db634de5`, Arc testnet; meets the ≥50 rule with wide margin).
 - Live comparison counter: `server/dashboard/server.ts:27`
   (`TRAD_GAS_PER_TX_USDC`)

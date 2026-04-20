@@ -68,6 +68,12 @@ surfaces for per-request API monetization:
   (`server/dashboard/server.ts`) renders the "traditional L1 gas would
   cost $X" comparison in real time during the demo.
 
+**Scoring narrative (explicit, judge-facing).**
+- We meet **≤ $0.01 per action**.
+- We have **50+ on-chain txs** (**155 unique txs in this run**).
+- We provide **margin proof vs traditional L1s**.
+- Primary track: **Agent-to-Agent Payment Loop**; secondary: **Per-API Monetization Engine** + **Usage-Based Compute Billing**.
+
 **Track alignment.** Primary: **🤖 Agent-to-Agent Payment Loop**.
 Secondary: **🪙 Per-API Monetization Engine** and **🧮 Usage-Based
 Compute Billing** — both naturally emerge from the same code.
@@ -185,3 +191,16 @@ Developer Console and verified on the Arc Block Explorer.
 | ERC-8004 trust layer | ✅ | `contracts/contracts/AgentRegistry.sol` + `vyper/contracts/AgentRegistry.vy` |
 | Vyper / Titanoboa | ✅ | `vyper/` (contracts, tests, `circle_boa_bridge.py`) |
 | Aligned with ≥1 track | ✅ | Agent-to-Agent (primary); Per-API and Usage-Based (secondary) |
+
+---
+
+## ❓ Judge FAQ (online review)
+
+**Q: Why are some `TaskCompleted` events not yet `TaskPaid`?**  
+A: `TaskPaid` only occurs after coordinator grading/approval; failed or stalled assignments move through reject/reclaim/pending states before payment.
+
+**Q: Why are task IDs non-contiguous in some tx reports?**  
+A: Reports can include a fixed block window over a long-lived contract, so IDs may reflect prior runs and concurrent sessions in the same deployment.
+
+**Q: How is trust enforced for agents?**  
+A: `TaskMarket` can require ERC-8004 identity via `AgentRegistry`, and approvals emit reputation feedback that updates each agent's score history.

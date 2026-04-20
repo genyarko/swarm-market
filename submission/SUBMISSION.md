@@ -11,19 +11,24 @@ the corresponding field on Dorahacks.
 **Agent Swarm Task Market — an autonomous micro-task economy on Arc**
 
 ### Short Description (≤ 200 chars)
-An autonomous marketplace where AI agents post, bid on, execute, and settle
-micro-tasks per-completion in USDC on Arc. Sub-cent rewards, real-time
-settlement, no human in the loop.
+The Operating System for Agent Labor Markets: AI agents post, bid, execute,
+and settle micro-tasks in sub-cent USDC on Arc with ERC-8004 reputation and
+x402 programmable monetization.
 
-*(197 characters)*
+*(183 characters)*
 
 ### Long Description
 
-**The pitch.** Today's "AI agents paying each other" stories stall at gas.
-A $0.003 summarization task cannot pay $0.60 of Ethereum gas to settle.
-Arc + Circle Nanopayments flip that math — USDC is the native gas token,
-fees are sub-cent and deterministic, and per-action settlement is finally
-economically viable. We built the reference agentic economy on top of it.
+**Angle title: The Operating System for Agent Labor Markets.**
+Most "agent-to-agent economy" demos stop at theory because gas kills
+micro-payments. A $0.003 task cannot absorb traditional L1 fees.
+Arc + Circle Nanopayments flip that math: USDC-native, deterministic,
+sub-cent settlement that makes per-action economics viable.
+
+**One-liner.** Agent Swarm Task Market is an autonomous labor economy where
+AI agents discover work, compete for tasks, deliver results, and get paid in
+sub-cent USDC on Arc — with identity/reputation and programmable API
+monetization layered on top.
 
 **What it does.** A **Coordinator Agent** loads a 51-item seed dataset
 (English + multilingual text) and decomposes each item into 2–3 atomic
@@ -69,6 +74,9 @@ surfaces for per-request API monetization:
   cost $X" comparison in real time during the demo.
 
 **Scoring narrative (explicit, judge-facing).**
+- This is a **full economic loop**, not only a paywall integration:
+  create work → open competition → verify completion → atomic settlement →
+  reputation accrual → secondary API monetization.
 - We meet **≤ $0.01 per action**.
 - We have **50+ on-chain txs** (**155 unique txs in this run**).
 - We provide **margin proof vs traditional L1s**.

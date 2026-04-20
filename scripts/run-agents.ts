@@ -14,6 +14,7 @@ import { Mutex } from '../server/lib/mutex.js';
 import { gradeResult } from '../server/agents/grader.js';
 
 const APPROVAL_POLL_MS = 4000;
+const AUTO_APPROVER_INCLUDE_HISTORY = (process.env.AUTO_APPROVER_INCLUDE_HISTORY ?? '').toLowerCase() === 'true';
 
 function log(ev: AgentEvent) {
   const tag = `[${new Date().toISOString().slice(11, 19)}] ${ev.agent.padEnd(26)}`;
@@ -83,14 +84,17 @@ async function autoApprover(coordinator: WalletRecord, lock: Mutex) {
   const rejected = new Set<string>();
   const reclaimed = new Set<string>();
   const assignmentTimeoutSec = Number(await getAssignmentTimeout());
-  console.log(`[coordinator] grader + reclaim active (timeout ${assignmentTimeoutSec}s)`);
+  const baselineNext = await getNextTaskId();
+  const minTaskId = AUTO_APPROVER_INCLUDE_HISTORY ? 1n : baselineNext;
+  const mode = AUTO_APPROVER_INCLUDE_HISTORY ? 'including history' : `new tasks only (id >= ${minTaskId})`;
+  console.log(`[coordinator] grader + reclaim active (timeout ${assignmentTimeoutSec}s, ${mode})`);
 
   while (true) {
     try {
       const next = await getNextTaskId();
       const nowSec = Math.floor(Date.now() / 1000);
 
-      for (let id = 1n; id < next; id++) {
+      for (let id = minTaskId; id < next; id++) {
         const idStr = id.toString();
         if (paid.has(idStr) || rejected.has(idStr) || reclaimed.has(idStr)) continue;
         const t = await getTask(id);

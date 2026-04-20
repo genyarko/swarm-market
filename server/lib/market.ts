@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { env, loadDeployment } from './config.js';
+import { chainConfig, env, loadDeployment } from './config.js';
 
 const TASK_MARKET_ABI = [
   'function nextTaskId() view returns (uint256)',
@@ -37,7 +37,11 @@ export type ChainTask = {
   assignedAt: bigint;
 };
 
-const provider = new ethers.JsonRpcProvider(env.arcRpcUrl);
+const provider = new ethers.JsonRpcProvider(
+  env.arcRpcUrl,
+  { chainId: chainConfig.chainId, name: chainConfig.network },
+  { staticNetwork: true },
+);
 const deployment = loadDeployment();
 const market = new ethers.Contract(deployment.address, TASK_MARKET_ABI, provider);
 

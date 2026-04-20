@@ -26,6 +26,7 @@ const PORT = Number(process.env.PORT ?? process.env.DASHBOARD_PORT ?? 8787);
 const POLL_MS = Number(process.env.DASHBOARD_POLL_MS ?? 2000);
 const TRAD_GAS_PER_TX_USDC = Number(process.env.TRAD_GAS_PER_TX_USDC ?? 0.05);
 const MAX_SSE_CLIENTS = Number(process.env.MAX_SSE_CLIENTS ?? 50);
+const MAX_CHAIN_READS_PER_POLL = Number(process.env.MAX_CHAIN_READS_PER_POLL ?? 40);
 const DASHBOARD_DIR = fileURLToPath(new URL('../../dashboard/', import.meta.url));
 
 type StoredTask = {
@@ -76,6 +77,7 @@ for (const w of wallets) {
 
 const tasks = new Map<string, StoredTask>();
 const feed: FeedEntry[] = [];
+let pollCursor = 1;
 
 type Client = { res: http.ServerResponse };
 const clients = new Set<Client>();
@@ -160,61 +162,69 @@ async function poll() {
   try {
     const next = await getNextTaskId();
     const highest = Number(next - 1n);
-    for (let id = 1; id <= highest; id++) {
+    if (highest < 1) return;
+
+    let reads = 0;
+    let id = Math.min(Math.max(pollCursor, 1), highest);
+    while (reads < MAX_CHAIN_READS_PER_POLL) {
       const idStr = String(id);
       const prev = tasks.get(idStr);
-      if (prev && (prev.status === TaskStatus.Paid || prev.status === TaskStatus.Cancelled)) continue;
 
-      const t = await getTask(BigInt(id));
-      const reward = Number(t.reward) / 1_000_000;
-      const now = Date.now();
+      if (!(prev && (prev.status === TaskStatus.Paid || prev.status === TaskStatus.Cancelled))) {
+        const t = await getTask(BigInt(id));
+        const reward = Number(t.reward) / 1_000_000;
+        const now = Date.now();
 
-      if (!prev) {
-        const stored: StoredTask = {
-          id: idStr,
-          taskType: t.taskType,
-          poster: t.poster,
-          assignee: t.assignee,
-          reward,
-          status: t.status,
-          resultCID: t.resultCID,
-          postedAt: now,
-        };
-        tasks.set(idStr, stored);
-        pushFeed(
-          'posted',
-          `Task #${id} ${t.taskType} posted — reward ${reward.toFixed(3)} USDC`,
-          idStr,
-        );
-        broadcast('task', { kind: 'posted', task: stored });
+        if (!prev) {
+          const stored: StoredTask = {
+            id: idStr,
+            taskType: t.taskType,
+            poster: t.poster,
+            assignee: t.assignee,
+            reward,
+            status: t.status,
+            resultCID: t.resultCID,
+            postedAt: now,
+          };
+          tasks.set(idStr, stored);
+          pushFeed(
+            'posted',
+            `Task #${id} ${t.taskType} posted — reward ${reward.toFixed(3)} USDC`,
+            idStr,
+          );
+          broadcast('task', { kind: 'posted', task: stored });
 
-        // If we discovered a task that has already progressed past Open,
-        // walk the state transitions so downstream consumers see full history.
-        if (t.status >= TaskStatus.Assigned) applyTransition(stored, TaskStatus.Assigned, t.assignee, reward, now);
-        if (t.status >= TaskStatus.Completed) applyTransition(stored, TaskStatus.Completed, t.assignee, reward, now);
-        if (t.status === TaskStatus.Paid) applyTransition(stored, TaskStatus.Paid, t.assignee, reward, now);
-        if (t.status === TaskStatus.Cancelled) applyTransition(stored, TaskStatus.Cancelled, t.assignee, reward, now);
-        stored.status = t.status;
-        stored.resultCID = t.resultCID;
-        stored.assignee = t.assignee;
-        continue;
+          // If we discovered a task that has already progressed past Open,
+          // walk the state transitions so downstream consumers see full history.
+          if (t.status >= TaskStatus.Assigned) applyTransition(stored, TaskStatus.Assigned, t.assignee, reward, now);
+          if (t.status >= TaskStatus.Completed) applyTransition(stored, TaskStatus.Completed, t.assignee, reward, now);
+          if (t.status === TaskStatus.Paid) applyTransition(stored, TaskStatus.Paid, t.assignee, reward, now);
+          if (t.status === TaskStatus.Cancelled) applyTransition(stored, TaskStatus.Cancelled, t.assignee, reward, now);
+          stored.status = t.status;
+          stored.resultCID = t.resultCID;
+          stored.assignee = t.assignee;
+        } else if (t.status !== prev.status) {
+          prev.assignee = t.assignee;
+          prev.resultCID = t.resultCID;
+          // Walk any skipped transitions so the UI stays consistent.
+          if (prev.status < TaskStatus.Assigned && t.status >= TaskStatus.Assigned)
+            applyTransition(prev, TaskStatus.Assigned, t.assignee, reward, now);
+          if (prev.status < TaskStatus.Completed && t.status >= TaskStatus.Completed && t.status !== TaskStatus.Cancelled)
+            applyTransition(prev, TaskStatus.Completed, t.assignee, reward, now);
+          if (prev.status < TaskStatus.Paid && t.status === TaskStatus.Paid)
+            applyTransition(prev, TaskStatus.Paid, t.assignee, reward, now);
+          if (t.status === TaskStatus.Cancelled && prev.status !== TaskStatus.Cancelled)
+            applyTransition(prev, TaskStatus.Cancelled, t.assignee, reward, now);
+          prev.status = t.status;
+        }
       }
 
-      if (t.status !== prev.status) {
-        prev.assignee = t.assignee;
-        prev.resultCID = t.resultCID;
-        // Walk any skipped transitions so the UI stays consistent.
-        if (prev.status < TaskStatus.Assigned && t.status >= TaskStatus.Assigned)
-          applyTransition(prev, TaskStatus.Assigned, t.assignee, reward, now);
-        if (prev.status < TaskStatus.Completed && t.status >= TaskStatus.Completed && t.status !== TaskStatus.Cancelled)
-          applyTransition(prev, TaskStatus.Completed, t.assignee, reward, now);
-        if (prev.status < TaskStatus.Paid && t.status === TaskStatus.Paid)
-          applyTransition(prev, TaskStatus.Paid, t.assignee, reward, now);
-        if (t.status === TaskStatus.Cancelled && prev.status !== TaskStatus.Cancelled)
-          applyTransition(prev, TaskStatus.Cancelled, t.assignee, reward, now);
-        prev.status = t.status;
-      }
+      reads++;
+      if (id >= highest) id = 1;
+      else id++;
+      if (id === pollCursor) break; // completed a full cycle
     }
+    pollCursor = id;
     broadcast('stats', computeStats());
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : String(e);

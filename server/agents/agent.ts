@@ -22,6 +22,8 @@ export type AgentEvent =
   | { type: 'error'; agent: string; taskId?: bigint; message: string }
   | { type: 'topup'; agent: string; amount: string };
 
+const STARTUP_LOOKBACK_TASKS = Number(process.env.AGENT_STARTUP_LOOKBACK_TASKS ?? 25);
+
 export class SpecialistAgent {
   readonly name: string;
   readonly wallet: WalletRecord;
@@ -78,7 +80,12 @@ export class SpecialistAgent {
       this.onEvent({ type: 'idle', agent: this.name });
       return;
     }
-    const startId = this.lastSeenId > 0n ? this.lastSeenId + 1n : 1n;
+    const startId =
+      this.lastSeenId > 0n
+        ? this.lastSeenId + 1n
+        : highest > BigInt(STARTUP_LOOKBACK_TASKS)
+          ? highest - BigInt(STARTUP_LOOKBACK_TASKS) + 1n
+          : 1n;
 
     for (let id = startId; id <= highest; id++) {
       const task = await getTask(id);

@@ -107,6 +107,7 @@ real time, trustless, no batching or custodian.
   50+ tx run (agent cards active, flow graph animating, gas comparison panel
   showing $X trad vs $0 Arc).
 - **Video presentation**: see §"Transaction Flow Demonstration (Video)" below.
+https://youtu.be/MYvywRosDYo
 - **Slide presentation**: 5 slides covering problem → architecture → live
   numbers → Circle product feedback → future work.
 
@@ -147,34 +148,6 @@ npm run tx-report            # writes tx-report.md + tx-report.csv
 See **[FEEDBACK.md](./FEEDBACK.md)** — covers products used, why we chose
 them, what worked, what could be improved, and concrete recommendations.
 
----
-
-## 📸 Transaction Flow Demonstration (Video) — script
-
-Required: video must show a USDC transaction executed via the Circle
-Developer Console and verified on the Arc Block Explorer.
-
-**Suggested 90-second script:**
-
-1. `[00:00]` Circle Developer Console — Wallets view with the 9 wallets
-   (1 coordinator + 8 specialists) showing USDC balances on Arc Testnet.
-2. `[00:10]` In the Console, click into the coordinator wallet → Transactions.
-3. `[00:15]` Kick off `npm run seed-tasks` in a terminal. Watch the wallet
-   transaction list populate with `approve` and `postTask` calls in real
-   time as Circle submits them.
-4. `[00:30]` Pick one `postTask` tx. Copy the tx hash from the Console.
-5. `[00:40]` Open https://explorer.testnet.arc.network → paste hash →
-   show the decoded `TaskPosted` event, the USDC transferFrom trace, and the
-   block confirmation time (~1s).
-6. `[01:00]` Switch to the dashboard (`https://swarm-market-production.up.railway.app`) — show the
-   same task appearing in the live feed within one poll cycle.
-7. `[01:15]` Show the "50+ txs" stat and the gas-cost comparison panel.
-8. `[01:25]` Cut to `tx-report.md` scrolling through the full event list
-   with explorer links.
-
-**Evidence file**: `tx-report.md` (auto-generated, committed after every run).
-
----
 
 ## ✅ Hackathon hard requirements — evidence checklist
 

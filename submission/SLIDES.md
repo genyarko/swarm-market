@@ -9,14 +9,13 @@ body, ≥54pt titles) for projector readability.
 ## Slide 1 — Title
 
 **Title:** Agent Swarm Task Market
-**Subtitle:** An autonomous micro-task economy on Arc
+**Subtitle:** The Operating System for Agent Labor Markets
 **Footer:** Circle × Arc Hackathon · April 2026 · Track: Agent-to-Agent Payment Loop
 **Visual:** Clean title slide. Optional: a single animated line from
   "Coordinator" → "8 Specialists" → "USDC on Arc" across the bottom.
 
-**Speaker note (30s):** *"We built the reference agentic economy on Arc:
-AI agents posting tasks, bidding, doing real work, and settling in USDC
-per-completion. Zero human in the loop. Live on testnet right now."*
+**Speaker note (20s):** *"We're Agent Swarm Task Market — a live,
+autonomous labor market for AI agents on Arc."*
 
 ---
 
@@ -33,10 +32,9 @@ per-completion. Zero human in the loop. Live on testnet right now."*
 **Visual:** A bar chart — reward ($0.003) next to gas on ETH ($0.60),
 Base ($0.02), Polygon ($0.005), Arc (~$0). Arc's bar is invisibly small.
 
-**Speaker note (30s):** *"The economics don't work. Per-action pricing
-sounds great, but on any traditional chain the gas costs more than the
-reward. Agents can't be autonomous if they need a custodian to batch
-settlement for them."*
+**Speaker note (25s):** *"Today, most 'agent-to-agent economy' demos stop
+at theory because gas kills micro-payments. A $0.003 task can't survive
+traditional chain fees."*
 
 ---
 
@@ -53,10 +51,8 @@ settlement for them."*
 
 **Visual:** Three Circle-branded icons in a row.
 
-**Speaker note (30s):** *"Arc changes three things at once: fees are
-denominated in USDC, they're sub-cent and predictable, and finality is
-sub-second. Now per-action pricing isn't just possible — it's the natural
-design."*
+**Speaker note (20s):** *"We solve that by settling per action in USDC on
+Arc with Circle Nanopayments."*
 
 ---
 
@@ -85,10 +81,10 @@ Coordinator Agent ──postTask──▶ TaskMarket.sol ◀──bidOnTask─�
 - Wallets: **Circle Developer-Controlled Wallets** (9 wallets, MPC)
 - Payment gate: **`@circle-fin/x402-batching`** Gateway middleware
 
-**Speaker note (40s):** *"One Coordinator decomposes work into atomic
-tasks. Eight Specialists poll the contract, claim tasks matching their
-skill, call Claude, submit results, get paid atomically. ERC-8004 gates
-bidding by identity and records reputation on every payment."*
+**Speaker note (30s):** *"Here's what runs: one Coordinator posts atomic
+tasks, eight Specialist Agents compete to claim work by capability, call an
+LLM, submit results on-chain, and receive escrowed USDC instantly upon
+approval. No batching, no custodian, no human in the loop."*
 
 ---
 
@@ -108,10 +104,9 @@ bidding by identity and records reputation on every payment."*
 `http://localhost:8787` with the feed scrolling, 8 agent cards active,
 and the "Gas (trad) vs Gas (Arc)" comparison panel highlighted.
 
-**Speaker note (40s):** *"Every number here is pulled from Arc's RPC, not
-mocked. `npm run tx-report` dumps the full transaction list with Arc
-explorer links — that's our 50+ tx proof, and judges can verify it
-independently."*
+**Speaker note (25s):** *"We meet the hard constraints with evidence:
+sub-cent per-action pricing, 50+ on-chain transactions per run, and margin
+proof that this fails on traditional L1s but works on Arc."*
 
 ---
 
@@ -135,10 +130,9 @@ const { data } = await client.pay("https://seller/premium-data");
 - Buyer deposits once, pays per call from unified balance
 - **60 paid API calls** demonstrated via `npm run nano-buyer`
 
-**Speaker note (30s):** *"We wired Circle's official Nanopayments SDK end
-to end — seller and buyer. Ten lines of integration. The buyer deposits
-once, then pays $0.001 per request. Gateway handles batched settlement
-behind the scenes."*
+**Speaker note (20s):** *"On top of the labor market, we expose premium
+data via x402, including Circle's official `@circle-fin/x402-batching`
+path at $0.001 per request."*
 
 ---
 
@@ -158,9 +152,8 @@ behind the scenes."*
 **Callout (bottom):** *"138 tasks. On Arc: ~$0 gas. On Ethereum: $331 burned
 before a single reward is paid."*
 
-**Speaker note (30s):** *"This is the margin argument. It's not close —
-it's 2–4 orders of magnitude. Without Arc there's no business. With Arc
-this is shippable tomorrow."*
+**Speaker note (15s):** *"This is not a demo paywall — it's a production
+blueprint for machine-to-machine labor markets."*
 
 ---
 
@@ -188,9 +181,9 @@ this is shippable tomorrow."*
 - 📄 Feedback: `submission/FEEDBACK.md`
 - 📄 Margin math: `submission/MARGIN.md`
 
-**Speaker note (40s):** *"Everything here is real Circle infrastructure.
-Zero custom rails. We want this to be the template every agent-economy
-hackathon starts from next year. Thanks — questions?"*
+**Speaker note (10s):** *"Think of us as Upwork for autonomous agents:
+discover work, prove output, get paid instantly, and build on-chain
+reputation — at sub-cent economics."*
 
 ---
 

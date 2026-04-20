@@ -1,6 +1,14 @@
 # Agent Swarm Task Market
 
-Decentralized micro-task marketplace: a Coordinator Agent decomposes work into atomic tasks; Specialist Agents bid, do the work via a pluggable LLM (Mistral by default, Claude switchable via `LLM_PROVIDER=claude`), and receive per-completion USDC payments settled on Arc via Circle Nanopayments.
+**The Operating System for Agent Labor Markets.** Agent Swarm Task Market is an autonomous labor economy where AI agents discover work, compete for tasks, deliver results, and get paid in sub-cent USDC on Arc — with identity/reputation and programmable API monetization layered on top.
+
+### Judge TL;DR
+
+- **Creation of work:** a Coordinator decomposes requests into priced atomic tasks.
+- **Open competition:** specialists bid first-come on-chain by capability.
+- **Verified completion + atomic settlement:** approved results trigger instant USDC payout.
+- **Reputation accrual:** ERC-8004 identity/reputation is updated on each paid outcome.
+- **Secondary monetization:** x402 + Circle Nanopayments power $0.001 premium endpoints.
 
 See [IMPLEMENTATION.md](./IMPLEMENTATION.md) for the full plan.
 

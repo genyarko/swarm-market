@@ -1,0 +1,170 @@
+# TaskMarket on-chain tx report
+
+- **Contract:** `0x821c0ee80e6cdcd09dc2719d25fce426db634de5`
+- **Chain:** arc-testnet
+- **Blocks scanned:** 37925744 → 37975744
+- **Unique on-chain txs:** **155** ✅ (≥50, meets hackathon requirement)
+- **Events observed:**
+  - SpecialistAuthorized: 8
+  - TaskPosted: 42
+  - TaskAssigned: 42
+  - TaskCompleted: 36
+  - TaskPaid: 27
+
+| # | Block | Event | Task | Details | Tx |
+|---|---|---|---|---|---|
+| 1 | 37975202 | SpecialistAuthorized | 0xa9e985fe593EfEF172C1C576452975F5Ac2e78d7 |  | [0xc491fd26…](https://explorer.testnet.arc.network/tx/0xc491fd26f79b6fc992de386031ba56958793fd8571f2cbdefa9e96576c6af7a7) |
+| 2 | 37975204 | TaskPosted | 125 | classify reward=0.002 USDC | [0xa77de913…](https://explorer.testnet.arc.network/tx/0xa77de9138a8c90dc994b4b8c92c42aa1d9c9025e514b92a776ff274be6ee88f1) |
+| 3 | 37975207 | TaskAssigned | 125 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xc9067a53…](https://explorer.testnet.arc.network/tx/0xc9067a53fb03bc85eac665306b22380bda8e6db1ce42383055a2349a7c6e6c07) |
+| 4 | 37975209 | SpecialistAuthorized | 0x3f7403319110ED68F667Be0c258d4b4F652054e7 |  | [0x329d47cf…](https://explorer.testnet.arc.network/tx/0x329d47cf514639017b035e97ece30f404995b91791d5f585c3db66e761d2e183) |
+| 5 | 37975214 | TaskCompleted | 125 | resultCID="{"category": "business", "confidence": 0…" | [0x453f1562…](https://explorer.testnet.arc.network/tx/0x453f1562357c898974cc30650fe8a33d18824d216a31f0338362a1133fa00699) |
+| 6 | 37975215 | SpecialistAuthorized | 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 |  | [0xbf42cf43…](https://explorer.testnet.arc.network/tx/0xbf42cf430e90fa6ffde8da1f95c159dca9b4c6acf18492423032a7f7ad8fe7aa) |
+| 7 | 37975217 | TaskPosted | 126 | sentiment reward=0.002 USDC | [0x1d234d41…](https://explorer.testnet.arc.network/tx/0x1d234d412fe9056e3ba8e62558f730cb4b2d890f5c5f7f87315f2857644b239b) |
+| 8 | 37975220 | TaskPaid | 125 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xc77e2bc5…](https://explorer.testnet.arc.network/tx/0xc77e2bc50ff2fb403ece5b2a76be2cd0dd434af81b8a38deb5de3ea89ff8f7c5) |
+| 9 | 37975222 | TaskAssigned | 126 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x288f2cfb…](https://explorer.testnet.arc.network/tx/0x288f2cfb8a057610cf987df248b3d6844b2247fe6d85e24cc57ff673ea596ed2) |
+| 10 | 37975223 | SpecialistAuthorized | 0xB25Cd303582570cefae07E67a74B68488453bdE3 |  | [0x6b362a4d…](https://explorer.testnet.arc.network/tx/0x6b362a4d1d8fc843fedc8ab813140f5dcb5143901cf210d44b6a724cfceb90cd) |
+| 11 | 37975229 | TaskPosted | 127 | classify reward=0.002 USDC | [0xeaa32d0a…](https://explorer.testnet.arc.network/tx/0xeaa32d0a2b4c806dea3c09525ed98b3ac778dc4700e9e6c5d30318143b9fc5ac) |
+| 12 | 37975229 | TaskCompleted | 126 | resultCID="{"score": 0.2, "label": "neutral"}…" | [0xebc03dfb…](https://explorer.testnet.arc.network/tx/0xebc03dfbce35cb61ba47ed92445b09b402eb97fd2e04f67e04d9cfa90b6b3fb1) |
+| 13 | 37975230 | SpecialistAuthorized | 0x9008E7e1a08aCF83663245F396733E6f2cE6aeE3 |  | [0x45fc7639…](https://explorer.testnet.arc.network/tx/0x45fc7639b7a1c088e57c2dc9c38830adbca380ebb8e113e9023cdac0a1c1c14c) |
+| 14 | 37975234 | TaskAssigned | 127 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x525e00e1…](https://explorer.testnet.arc.network/tx/0x525e00e112c11d519b6aca474c1294a4af8ae3a511e4942a50d74788f5f8f6cd) |
+| 15 | 37975237 | SpecialistAuthorized | 0x0D7F53E277403cEc9C8C75494B0412ba7A871AbA |  | [0xab5fa93e…](https://explorer.testnet.arc.network/tx/0xab5fa93e37f7a331b9e3c93d588b16f6e9b80e0ddb7ed64a7cdd8fbfd08150c2) |
+| 16 | 37975237 | TaskPaid | 126 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x1c481fef…](https://explorer.testnet.arc.network/tx/0x1c481fefd1c9c922349f12758293aa7b9828f83d858882ba89d87bc3a7edc8b6) |
+| 17 | 37975241 | TaskCompleted | 127 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0xf528b818…](https://explorer.testnet.arc.network/tx/0xf528b818ac10ae344b6fd9f2b2acf790e688acfca9c661bb70197a1c8c696ba2) |
+| 18 | 37975242 | TaskPosted | 128 | sentiment reward=0.002 USDC | [0x84d6e375…](https://explorer.testnet.arc.network/tx/0x84d6e375e0571aed5bf1ac70b936c44a78779aacea4180f99c641798e39be6ba) |
+| 19 | 37975243 | SpecialistAuthorized | 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 |  | [0x984ac6d0…](https://explorer.testnet.arc.network/tx/0x984ac6d0e647c6c6c0e955db6d53b4d6c6cbde6560931910daec2b118cd0cd53) |
+| 20 | 37975247 | TaskAssigned | 128 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x63d1be8a…](https://explorer.testnet.arc.network/tx/0x63d1be8ac0ba0a12feeb2d8677d954bf409037ddf9589ddfc628236e67026abc) |
+| 21 | 37975250 | SpecialistAuthorized | 0x1D631D5C4414Ab7e9bFCdBE54826Cc13feBf3dA8 |  | [0x08d56bc9…](https://explorer.testnet.arc.network/tx/0x08d56bc963a5fe11759b819073ea468d061c26171a0577df2cb285a59a7a28d0) |
+| 22 | 37975254 | TaskPosted | 129 | classify reward=0.002 USDC | [0xa4a4042b…](https://explorer.testnet.arc.network/tx/0xa4a4042b4f34b37bed5197aaff13d3aa6c2ecb22e1ddaee5a1d32548b5aedbcd) |
+| 23 | 37975254 | TaskCompleted | 128 | resultCID="{"score": 0.2, "label": "neutral"}…" | [0x23353073…](https://explorer.testnet.arc.network/tx/0x233530730b828933b039b18804a074cd4995e5bc20f5c370e278ee9e6f1e7b5a) |
+| 24 | 37975255 | TaskPaid | 127 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xed935c25…](https://explorer.testnet.arc.network/tx/0xed935c25c97224a795d4d493e32dcd5f89a570b088faeda8f6d8b01b39aea0fc) |
+| 25 | 37975257 | TaskAssigned | 129 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x36ab33cb…](https://explorer.testnet.arc.network/tx/0x36ab33cb36d7a5ef08903398096277091639a7846d3157b1599ed8340e37d932) |
+| 26 | 37975265 | TaskCompleted | 129 | resultCID="{"category": "science", "confidence": 0.…" | [0x384e728a…](https://explorer.testnet.arc.network/tx/0x384e728accf89aa85fd1cf1e6bbf09ff27282d133d046f51ed92372d87332e62) |
+| 27 | 37975266 | TaskPosted | 130 | sentiment reward=0.002 USDC | [0xdf8931b6…](https://explorer.testnet.arc.network/tx/0xdf8931b66be131bc2899734f9eda3859c2eabc8a5e2cc15c2e92af06b053dcf8) |
+| 28 | 37975272 | TaskAssigned | 130 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x7103f2e4…](https://explorer.testnet.arc.network/tx/0x7103f2e46e351574149a7a2ae01f80e9a16bc8cc73d97b9316902d6a1690de69) |
+| 29 | 37975273 | TaskPaid | 24 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xd4c7be38…](https://explorer.testnet.arc.network/tx/0xd4c7be38c43d8efa443f86435b07e4d5e3f6e0ab935d8d62ed1e18eea0133b57) |
+| 30 | 37975273 | TaskPaid | 129 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x33775d6d…](https://explorer.testnet.arc.network/tx/0x33775d6df52e69eb2952bc2da172f1583f6f6ca60bb7f2082b58182ca51c30bb) |
+| 31 | 37975279 | TaskPosted | 131 | classify reward=0.002 USDC | [0xa877882b…](https://explorer.testnet.arc.network/tx/0xa877882bb604a4ee4ae20279c4b35bbb08c7a7666f9fb380690104c39c9f24c7) |
+| 32 | 37975279 | TaskCompleted | 130 | resultCID="{"score": -0.2, "label": "neutral"}…" | [0x7f12894d…](https://explorer.testnet.arc.network/tx/0x7f12894dd1044d89cb26e0462530b4b68f61dcfc72b047b06a11a2d3f18d8d96) |
+| 33 | 37975283 | TaskAssigned | 131 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xc56a85b2…](https://explorer.testnet.arc.network/tx/0xc56a85b234aad61fff325589bec2144e5c933a2beba05a4d30d30001658aafea) |
+| 34 | 37975290 | TaskCompleted | 131 | resultCID="{"category": "business", "confidence": 0…" | [0x3a71d345…](https://explorer.testnet.arc.network/tx/0x3a71d345a411634a77e27cbea6a33cd310ef44028ff47cc41d2e6cc25f57092f) |
+| 35 | 37975291 | TaskPosted | 132 | sentiment reward=0.002 USDC | [0xdc4aa334…](https://explorer.testnet.arc.network/tx/0xdc4aa3349ac3a98a62845175363970517953febc334b190229c2e55be9bcd357) |
+| 36 | 37975297 | TaskAssigned | 132 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x0432bdad…](https://explorer.testnet.arc.network/tx/0x0432bdade5aa0cbbaf7730f34285e293dc6db1d919a8696a382187899e4fac4a) |
+| 37 | 37975300 | TaskPaid | 59 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x92749e25…](https://explorer.testnet.arc.network/tx/0x92749e25a81a65355529c5e01032cc0384bb8aa296fc02abe46f895dfec51ea9) |
+| 38 | 37975304 | TaskPosted | 133 | classify reward=0.002 USDC | [0xdea07aa4…](https://explorer.testnet.arc.network/tx/0xdea07aa4b7d003374ab08c57285501c277ab36a84b40e5723b506288dc315d63) |
+| 39 | 37975304 | TaskCompleted | 132 | resultCID="{"score": 0.8, "label": "positive"}…" | [0x8271e75b…](https://explorer.testnet.arc.network/tx/0x8271e75bf295f9aae206e7d38ddc7c56bbdedf5005d364805e99f6eece433ab7) |
+| 40 | 37975306 | TaskPaid | 131 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0x941aae61…](https://explorer.testnet.arc.network/tx/0x941aae618eedadf631acee66e36afd08e01099e2a416444a13dcdc1e1653d102) |
+| 41 | 37975308 | TaskAssigned | 133 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0x5fa97ff5…](https://explorer.testnet.arc.network/tx/0x5fa97ff5ab303771d7d9c78420b4d795bc55ec05c20facf257798642ccba7645) |
+| 42 | 37975313 | TaskPaid | 132 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xa0d9825d…](https://explorer.testnet.arc.network/tx/0xa0d9825d072abcfdda6a9558b9fc027564651b46164d6c75e45fa035d8628b9b) |
+| 43 | 37975315 | TaskCompleted | 133 | resultCID="{"category": "politics", "confidence": 0…" | [0x4980bc26…](https://explorer.testnet.arc.network/tx/0x4980bc269823ac3c57b88dd7a7ba0756e67d7a3d8cd375a71dbc8c3f11dc46ce) |
+| 44 | 37975317 | TaskPosted | 134 | sentiment reward=0.002 USDC | [0x8f760658…](https://explorer.testnet.arc.network/tx/0x8f7606582b3759401448ff6c74c35ffe6a54c3ecd2fbb59b33c04acb62ec22ff) |
+| 45 | 37975319 | TaskPaid | 86 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x76073ca3…](https://explorer.testnet.arc.network/tx/0x76073ca3aeba696b2e2a78a3e17a4c98af6fa8bb10b873f529c1a63ba82a51d9) |
+| 46 | 37975322 | TaskAssigned | 134 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x38fa0246…](https://explorer.testnet.arc.network/tx/0x38fa0246c2c09cdf38c69c921c6b0180e68ccca306ddf79bb6d03b66a4223420) |
+| 47 | 37975329 | TaskCompleted | 134 | resultCID="{"score": 0.8, "label": "positive"}…" | [0xcc18eb65…](https://explorer.testnet.arc.network/tx/0xcc18eb65ca74eccb1c0f411cb8b4ff3eba2d43b715dd72db4f82b57170317139) |
+| 48 | 37975334 | TaskPosted | 135 | summarize reward=0.003 USDC | [0x8c288d89…](https://explorer.testnet.arc.network/tx/0x8c288d8911d5a759b3efb8b26ffc4dd4331fa9e12d6e4ee59c45c7b12a9c4fd4) |
+| 49 | 37975338 | TaskAssigned | 135 | assignee=0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0xecdd528e…](https://explorer.testnet.arc.network/tx/0xecdd528efadf64494cd8889a56e5bf1f7c16259fece1010ca67a45059913465e) |
+| 50 | 37975344 | TaskPaid | 133 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xf3e61dc5…](https://explorer.testnet.arc.network/tx/0xf3e61dc52bfd67b205377c90b6e1b76cfad14433440faf28f1c88c627d652835) |
+| 51 | 37975347 | TaskPosted | 136 | extract reward=0.003 USDC | [0xd6c76dea…](https://explorer.testnet.arc.network/tx/0xd6c76deac25e429e186840bccf84fa4523d681e0590d377843719eb2455c53c2) |
+| 52 | 37975348 | TaskCompleted | 135 | resultCID="Arc is a new Layer 1 blockchain by Circl…" | [0x4c6fd256…](https://explorer.testnet.arc.network/tx/0x4c6fd256205ac55450dd58ae15bb667d99f7d65eb7b616bfd38882b051b4702c) |
+| 53 | 37975352 | TaskAssigned | 136 | assignee=0x1D631D5C4414Ab7e9bFCdBE54826Cc13feBf3dA8 | [0xa43c2da9…](https://explorer.testnet.arc.network/tx/0xa43c2da9d05ad8a2a018256af5f31467ffd01a2cfa60251d25055c158408e332) |
+| 54 | 37975359 | TaskPosted | 137 | sentiment reward=0.002 USDC | [0x1b4d6d90…](https://explorer.testnet.arc.network/tx/0x1b4d6d903f116416aaafb99c82a803bd348ac1e8e1ba59d6abd5d79a3a3f47b6) |
+| 55 | 37975363 | TaskPaid | 135 | paid=0.003 USDC → 0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0x21afbd4b…](https://explorer.testnet.arc.network/tx/0x21afbd4b1804a4f5dd27c4a7e7db18955c2e27c40b04ab56e919add7cfa615a1) |
+| 56 | 37975364 | TaskAssigned | 137 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x2f4e6aa4…](https://explorer.testnet.arc.network/tx/0x2f4e6aa4f9171acf7a99a948448e67b56822a11d1f4497b18f3f609fe47caa70) |
+| 57 | 37975372 | TaskPosted | 138 | summarize reward=0.003 USDC | [0x749b150e…](https://explorer.testnet.arc.network/tx/0x749b150e80c21bd6627090c907a236b68a172accbb463c0265cfefc739057340) |
+| 58 | 37975376 | TaskAssigned | 138 | assignee=0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0x7fa4f65a…](https://explorer.testnet.arc.network/tx/0x7fa4f65ae8fed3b64b2489ade8ed299ad2dfa2c53cd2ff4c67a87a3687dc1ab2) |
+| 59 | 37975384 | TaskPosted | 139 | extract reward=0.003 USDC | [0x6044f172…](https://explorer.testnet.arc.network/tx/0x6044f172689c92c42408217d6fcb44d7d8b3e262a4e3a5ff637d333404a652f7) |
+| 60 | 37975385 | TaskCompleted | 138 | resultCID="Autonomous research agents are increasin…" | [0x0020b55f…](https://explorer.testnet.arc.network/tx/0x0020b55f29d65652caa58fee949fd35b3511a0e3071f391db741ab8f77a9c6c8) |
+| 61 | 37975387 | TaskAssigned | 139 | assignee=0x1D631D5C4414Ab7e9bFCdBE54826Cc13feBf3dA8 | [0x7eb1eaa3…](https://explorer.testnet.arc.network/tx/0x7eb1eaa34da4148240ece090c8d22ca34895de60b8dd0e1e7ced7a8a53b2c031) |
+| 62 | 37975391 | TaskPaid | 138 | paid=0.003 USDC → 0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0x52791b9f…](https://explorer.testnet.arc.network/tx/0x52791b9f8ce5fcb7db0aa994b40cfa613556378965165b605658b7f0181b563e) |
+| 63 | 37975395 | TaskCompleted | 139 | resultCID="{"entities": ["Autonomous research agent…" | [0xc054eef6…](https://explorer.testnet.arc.network/tx/0xc054eef6e7cb8e2eba57c2a76b50134f4b4402a71ac0d0dfbcbd9c0ed02c7133) |
+| 64 | 37975397 | TaskPosted | 140 | sentiment reward=0.002 USDC | [0x18bacfc1…](https://explorer.testnet.arc.network/tx/0x18bacfc1e7fd3c4725887fd1de71ad176cf871453e765925bde3df465ac005b9) |
+| 65 | 37975401 | TaskAssigned | 140 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xb7a57588…](https://explorer.testnet.arc.network/tx/0xb7a5758858358b96cd8ae3b90368042444b0c7162f88ee25237133b7218cb076) |
+| 66 | 37975408 | TaskCompleted | 140 | resultCID="{"score": 0.3, "label": "neutral"}…" | [0x4f2cbc03…](https://explorer.testnet.arc.network/tx/0x4f2cbc03194d3d6b305010dfe16bdf18967eae8947ff266e1150700f2fd2751e) |
+| 67 | 37975409 | TaskPosted | 141 | summarize reward=0.003 USDC | [0xbdca214c…](https://explorer.testnet.arc.network/tx/0xbdca214c771eac54b2a1c8a9590cdc3ad5afb4fce056a22e585beb13c25df4f2) |
+| 68 | 37975412 | TaskPaid | 139 | paid=0.003 USDC → 0x1D631D5C4414Ab7e9bFCdBE54826Cc13feBf3dA8 | [0xff5d3933…](https://explorer.testnet.arc.network/tx/0xff5d39334e33cb71a380e1be9ebddb4df81d52590d40d59aefb8cf5724a22e8c) |
+| 69 | 37975413 | TaskAssigned | 141 | assignee=0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0x5e453c4a…](https://explorer.testnet.arc.network/tx/0x5e453c4a0b8823d217aa9513b69f3994cb3dda2e80cf047fede30b059568ede8) |
+| 70 | 37975422 | TaskPosted | 142 | extract reward=0.003 USDC | [0x2984d774…](https://explorer.testnet.arc.network/tx/0x2984d774beeed49c606133b3d22caf923a3c981405a2190f4c6f629a1de0ac6c) |
+| 71 | 37975425 | TaskCompleted | 141 | resultCID="A specialist-agent swarm's success hinge…" | [0xb6438295…](https://explorer.testnet.arc.network/tx/0xb64382951498dace31286631feaa2e3481da9167d9febe18f8f171ca9d59653d) |
+| 72 | 37975427 | TaskAssigned | 142 | assignee=0x1D631D5C4414Ab7e9bFCdBE54826Cc13feBf3dA8 | [0x71f81a06…](https://explorer.testnet.arc.network/tx/0x71f81a0625cb0933ed02b86c1f84127d87f2ee25d32d57884fd8a65f3e80f904) |
+| 73 | 37975431 | TaskPaid | 141 | paid=0.003 USDC → 0x3f7403319110ED68F667Be0c258d4b4F652054e7 | [0x7d1a335d…](https://explorer.testnet.arc.network/tx/0x7d1a335d8bd02de468b02f356f931891db091bff565a15e9d56f8914d71bf21f) |
+| 74 | 37975434 | TaskPosted | 143 | sentiment reward=0.002 USDC | [0x00878e86…](https://explorer.testnet.arc.network/tx/0x00878e8681c621e02dc6b76d1a19ca50f4cf37fcfab669fd4388d175f9bd4a65) |
+| 75 | 37975437 | TaskAssigned | 143 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xc2b1d551…](https://explorer.testnet.arc.network/tx/0xc2b1d55166dff74c10ed59224b6956849919d9c328a3582878525236744f6799) |
+| 76 | 37975445 | TaskCompleted | 143 | resultCID="{"score": 0.6, "label": "positive"}…" | [0x31c52fbf…](https://explorer.testnet.arc.network/tx/0x31c52fbf3d9394ae9b17cf398ab2387731906e7b164cf478015e9478c8e94c6d) |
+| 77 | 37975447 | TaskPosted | 144 | classify reward=0.002 USDC | [0x21f1baab…](https://explorer.testnet.arc.network/tx/0x21f1baab639746eaf0c8bb0eab0b84e7d945725a0e416005560703e1d485964a) |
+| 78 | 37975452 | TaskAssigned | 144 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xb03cdacf…](https://explorer.testnet.arc.network/tx/0xb03cdacff76fc87130611d2a2a75804066403b3e753da6661630d7e094eb0be1) |
+| 79 | 37975464 | TaskPosted | 145 | sentiment reward=0.002 USDC | [0xa9ff3632…](https://explorer.testnet.arc.network/tx/0xa9ff3632e1d1a3e9ea98cd8b626bd98b888c5f55a4d702de8a0de320ac519cb9) |
+| 80 | 37975465 | TaskCompleted | 144 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0x31cd92a5…](https://explorer.testnet.arc.network/tx/0x31cd92a57eeda8ce9cb0bc65e7a18bda9f17771356a248b759524697d995dacb) |
+| 81 | 37975470 | TaskAssigned | 145 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x7d20f869…](https://explorer.testnet.arc.network/tx/0x7d20f869357131bf09a825cecffe39c22103d4c71a3586c9330973076c1a2900) |
+| 82 | 37975475 | TaskPaid | 144 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xd32fe99f…](https://explorer.testnet.arc.network/tx/0xd32fe99fac305f296c6f523c33262cc7a15cd7a78cf2d21fb3087e790b3dad02) |
+| 83 | 37975477 | TaskPosted | 146 | classify reward=0.002 USDC | [0x4c384f5e…](https://explorer.testnet.arc.network/tx/0x4c384f5ef404be4fddf6cbb52399ec0d0fa56eba92c86858d6f4f2a4950a7673) |
+| 84 | 37975478 | TaskCompleted | 145 | resultCID="{"score": 0.3, "label": "positive"}…" | [0x130011d1…](https://explorer.testnet.arc.network/tx/0x130011d12fc404ee3b9aeec6f9296bc6a9b762e716c99d003c75d135f8053a7e) |
+| 85 | 37975482 | TaskAssigned | 146 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xddddd782…](https://explorer.testnet.arc.network/tx/0xddddd782f6eda21b9067cdc909cc0f27c28af75f46241c1dcdc345fc45e44776) |
+| 86 | 37975490 | TaskPosted | 147 | sentiment reward=0.002 USDC | [0xf10a996d…](https://explorer.testnet.arc.network/tx/0xf10a996d7bfa5580aa214ecdc92deca7a4e4ba42f906d3f22b06eb5329f01ccd) |
+| 87 | 37975495 | TaskAssigned | 147 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x79aa87c2…](https://explorer.testnet.arc.network/tx/0x79aa87c214e0c530863124a8e8fda92ed3876cf16624d8433fd94660150cdce3) |
+| 88 | 37975503 | TaskCompleted | 147 | resultCID="{"score": 0.0, "label": "neutral"}…" | [0x781bfccf…](https://explorer.testnet.arc.network/tx/0x781bfccf28fe5b84826e2f0afd4d83e4d022d33acf5063f09bd4fc59e13605a0) |
+| 89 | 37975503 | TaskPosted | 148 | classify reward=0.002 USDC | [0x487c4dd8…](https://explorer.testnet.arc.network/tx/0x487c4dd8ed0475ee31c13bd1bd43675d7d2625133b12f33d86c2d48dfcf5da35) |
+| 90 | 37975509 | TaskAssigned | 148 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0x8f9e5e95…](https://explorer.testnet.arc.network/tx/0x8f9e5e95f338849fc1a7369eb31751ce48b633084ab27195019de4a585978b24) |
+| 91 | 37975515 | TaskPosted | 149 | sentiment reward=0.002 USDC | [0x15052da0…](https://explorer.testnet.arc.network/tx/0x15052da0ed17f2f3720abe0f16981b18b59c1b512218166354a588a3ce28618d) |
+| 92 | 37975517 | TaskCompleted | 148 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0x01d0f01b…](https://explorer.testnet.arc.network/tx/0x01d0f01b11bfcee656896e5f859be695c1087debc0d84e48ba10c11a0ee0bd51) |
+| 93 | 37975521 | TaskAssigned | 149 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xcf11b1f4…](https://explorer.testnet.arc.network/tx/0xcf11b1f46d7f7839d907a7abd4e38f3685075b7f2397335722bc155edbf98154) |
+| 94 | 37975528 | TaskPosted | 150 | classify reward=0.002 USDC | [0xb1af0f7f…](https://explorer.testnet.arc.network/tx/0xb1af0f7f31dff8e500c1bcf0efc0463b11183fc89cfc645bbff1e963c8f7b1e9) |
+| 95 | 37975528 | TaskPaid | 148 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xd0e4bf58…](https://explorer.testnet.arc.network/tx/0xd0e4bf58cf1b67879809498face60a0771d8090e3d48cf608a412ccbdd5c6e39) |
+| 96 | 37975528 | TaskCompleted | 149 | resultCID="{"score": -0.9, "label": "negative"}…" | [0xd12301b1…](https://explorer.testnet.arc.network/tx/0xd12301b16d4c79718d41a6e1f4875dc6f1d7618cba2ac34fe3621216895718a2) |
+| 97 | 37975531 | TaskAssigned | 150 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xa112f827…](https://explorer.testnet.arc.network/tx/0xa112f8272136bc37e54324f8427d80bf76b959a5e4cd53cc1c13c11dfde301a0) |
+| 98 | 37975539 | TaskCompleted | 150 | resultCID="{"category": "tech", "confidence": 0.95}…" | [0xcb91178e…](https://explorer.testnet.arc.network/tx/0xcb91178e82ebaa0f18332ec40f5e0f2701641a1a5bf840e7301fae9917fee110) |
+| 99 | 37975540 | TaskPosted | 151 | sentiment reward=0.002 USDC | [0x39500b26…](https://explorer.testnet.arc.network/tx/0x39500b2623f8d6570362b2256a98459aae616252b28a655347f7d1dc19312cd2) |
+| 100 | 37975545 | TaskAssigned | 151 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xc5f9971f…](https://explorer.testnet.arc.network/tx/0xc5f9971f507f33d9a4f8a9ee3c8ac4b8f821f2fb36271781f57ccad2fd27c4d2) |
+| 101 | 37975548 | TaskPaid | 150 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x76bcf1e1…](https://explorer.testnet.arc.network/tx/0x76bcf1e12d5feb1d335e877bc0041899de07c3bf19b452e90c6e906ade5a3a21) |
+| 102 | 37975552 | TaskCompleted | 151 | resultCID="{"score": 0.9, "label": "positive"}…" | [0xad0ed28e…](https://explorer.testnet.arc.network/tx/0xad0ed28e3e108e5ad0f99aec76314953370e7bd3ebf9280a8b679f3cb5737fc6) |
+| 103 | 37975553 | TaskPosted | 152 | classify reward=0.002 USDC | [0xca79a00c…](https://explorer.testnet.arc.network/tx/0xca79a00c28a7a674364e07c4069bf32442e855e6a215df700d4f8a009781f4dd) |
+| 104 | 37975557 | TaskAssigned | 152 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xfb635911…](https://explorer.testnet.arc.network/tx/0xfb635911b463601277c833b8e84e123076433bbd0a2dd8ab3c6b897b4830e501) |
+| 105 | 37975565 | TaskCompleted | 152 | resultCID="{"category": "entertainment", "confidenc…" | [0x05990d59…](https://explorer.testnet.arc.network/tx/0x05990d595062bd1e4e8974b0bc9eacf0fbcddabaaabb4ec6281ddce631f5b748) |
+| 106 | 37975565 | TaskPosted | 153 | sentiment reward=0.002 USDC | [0xcc623024…](https://explorer.testnet.arc.network/tx/0xcc623024d994f53c51b10d324b366f375ef4b8f0d52150fbe4b0dc89207fd357) |
+| 107 | 37975567 | TaskPaid | 151 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x9abbb405…](https://explorer.testnet.arc.network/tx/0x9abbb405daa1e74d31a398acf25640189b766d353716416b6cee54ebfc62a792) |
+| 108 | 37975569 | TaskAssigned | 153 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xcad273da…](https://explorer.testnet.arc.network/tx/0xcad273dad1e9480dd70947e17ac9e3adb1adfce89f1458ebf6b2883b0a03cf16) |
+| 109 | 37975576 | TaskCompleted | 153 | resultCID="{"score": 0.0, "label": "neutral"}…" | [0x85f6e2be…](https://explorer.testnet.arc.network/tx/0x85f6e2bebc352830ee23496cc583e3a53964579cd3f8c6e7b3507d33417a538b) |
+| 110 | 37975577 | TaskPosted | 154 | classify reward=0.002 USDC | [0x4b1f4161…](https://explorer.testnet.arc.network/tx/0x4b1f41613af89948cee84718b95d87ec2cc68d1f4d17f187efe5b4c5fa0decd7) |
+| 111 | 37975580 | TaskAssigned | 154 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xc96f7bd9…](https://explorer.testnet.arc.network/tx/0xc96f7bd9b16e028a563ee5b60f43308b02eb0669a7360291fe8fea2dee281bb8) |
+| 112 | 37975585 | TaskPaid | 153 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x61053054…](https://explorer.testnet.arc.network/tx/0x610530545f26df00d4c31821307cec201c96ec2cc09c1974cbcb747d1ed9d163) |
+| 113 | 37975588 | TaskCompleted | 154 | resultCID="{"category": "business", "confidence": 0…" | [0xe1643af9…](https://explorer.testnet.arc.network/tx/0xe1643af953dbf9b1da1b0169aa830a8daaba6466707c9a79641bf2b0abb89259) |
+| 114 | 37975592 | TaskPaid | 154 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x5ce44949…](https://explorer.testnet.arc.network/tx/0x5ce4494901d66630d1eddb08711612dc14225841c5c89abf1458134273fc8a7e) |
+| 115 | 37975595 | TaskPosted | 155 | sentiment reward=0.002 USDC | [0x5ff97032…](https://explorer.testnet.arc.network/tx/0x5ff970320b93b9cf68d90203a2e12c719cfa341e5fcd7b3774c1154c4b5d8290) |
+| 116 | 37975598 | TaskAssigned | 155 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x1447012b…](https://explorer.testnet.arc.network/tx/0x1447012bb3b0934603f53289f96573de02da9ce54e7b5221ec57f9e321ca7768) |
+| 117 | 37975605 | TaskCompleted | 155 | resultCID="{"score": -0.9, "label": "negative"}…" | [0x3388b40c…](https://explorer.testnet.arc.network/tx/0x3388b40c360bec2099e8fd3ef73f95a2117dd91f9de0192aa017da40ed1d3f79) |
+| 118 | 37975608 | TaskPosted | 156 | classify reward=0.002 USDC | [0x37474048…](https://explorer.testnet.arc.network/tx/0x37474048fa0d830f258f97a628557205a2d1715631b32afe8f7e08449540cabc) |
+| 119 | 37975613 | TaskAssigned | 156 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x11ebc809…](https://explorer.testnet.arc.network/tx/0x11ebc8094c4af8b4e89bfe47cf7953d4a50968455f9661e22849abc1eb31ff3c) |
+| 120 | 37975620 | TaskPosted | 157 | sentiment reward=0.002 USDC | [0x904dd26e…](https://explorer.testnet.arc.network/tx/0x904dd26ea810ca004fe5348970b89943a673f5827659bf66a5a261677dca6ee7) |
+| 121 | 37975621 | TaskCompleted | 156 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0xe840b70c…](https://explorer.testnet.arc.network/tx/0xe840b70cbaebf55e852ff2fd63ce8f0d5a844707a47c89ee8cc6c44d10145a2c) |
+| 122 | 37975626 | TaskAssigned | 157 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xb2db8a59…](https://explorer.testnet.arc.network/tx/0xb2db8a592e5bcd5f9f76b4b755a1d0d215a7cc772aeb8621bafce848703df4a3) |
+| 123 | 37975632 | TaskPosted | 158 | classify reward=0.002 USDC | [0x08f391b2…](https://explorer.testnet.arc.network/tx/0x08f391b2653ba2e8eaf1cf76eca39682a08317342cc580e089c45779f2977859) |
+| 124 | 37975633 | TaskPaid | 156 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x88512850…](https://explorer.testnet.arc.network/tx/0x88512850b6ea2c4260d9b00d1b12b832d7fa169fce0fc990b6cc7a92ac3a79f6) |
+| 125 | 37975633 | TaskCompleted | 157 | resultCID="{"score": 0.8, "label": "positive"}…" | [0xf6676160…](https://explorer.testnet.arc.network/tx/0xf6676160cc2a18ed4ff662fa87564af4058799c302daf2335148111bf9662918) |
+| 126 | 37975635 | TaskAssigned | 158 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x4e95c18c…](https://explorer.testnet.arc.network/tx/0x4e95c18c920938d4efa69e4e39dc8f7ec7b777d459b3759fc1f9449e36531372) |
+| 127 | 37975640 | TaskPaid | 157 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x04ad455d…](https://explorer.testnet.arc.network/tx/0x04ad455d40cce3ae2881e2cadb62584f7aa0393a3656ab370c747ff39dcdc661) |
+| 128 | 37975645 | TaskPosted | 159 | sentiment reward=0.002 USDC | [0x94d1cdec…](https://explorer.testnet.arc.network/tx/0x94d1cdecee5cc375f6b4fb6226dd0c2bd050f730b9d678e4fe306f0cfff46f9c) |
+| 129 | 37975651 | TaskAssigned | 159 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xcc1b2827…](https://explorer.testnet.arc.network/tx/0xcc1b2827225289187bd8aa0fa5ceb3320c4f70a1b5de1906032ccd0d8be33630) |
+| 130 | 37975657 | TaskPosted | 160 | classify reward=0.002 USDC | [0xbc08db47…](https://explorer.testnet.arc.network/tx/0xbc08db47291b400990bfd591f3c04688dc703ab4e295fbc82b482ee718bc9b70) |
+| 131 | 37975658 | TaskCompleted | 159 | resultCID="{"score": -0.8, "label": "negative"}…" | [0xb26a17af…](https://explorer.testnet.arc.network/tx/0xb26a17af5d636832da400345ef7523a3556182462d6509d3a99a5cdef97276f9) |
+| 132 | 37975660 | TaskAssigned | 160 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xfc896dab…](https://explorer.testnet.arc.network/tx/0xfc896dab189b698b7d6f231d7dd7487b357da89cc0b4ff406b07179973bffbff) |
+| 133 | 37975668 | TaskCompleted | 160 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0x5c86def0…](https://explorer.testnet.arc.network/tx/0x5c86def0c247f024841c915d20c9a2406f8806e588b3483006532ec14e8beefb) |
+| 134 | 37975669 | TaskPosted | 161 | sentiment reward=0.002 USDC | [0x02643d03…](https://explorer.testnet.arc.network/tx/0x02643d0307e0892c818916655221707aaa32eb7580fc21c7798df56ed333f43d) |
+| 135 | 37975672 | TaskAssigned | 161 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x4412bf95…](https://explorer.testnet.arc.network/tx/0x4412bf959621a32df4439b416e2fa894844e89445d577b605c1f6d8de8df2b17) |
+| 136 | 37975679 | TaskCompleted | 161 | resultCID="{"score": 1.0, "label": "positive"}…" | [0xa6bcccb4…](https://explorer.testnet.arc.network/tx/0xa6bcccb4a8dd5f5fb645ca6f063be4c3d51d86934291898a299c76360e935a43) |
+| 137 | 37975682 | TaskPaid | 160 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0x9f55410a…](https://explorer.testnet.arc.network/tx/0x9f55410a3c36639f169643eea26d525c059903f3a72547b879bbb21d884a457b) |
+| 138 | 37975682 | TaskPosted | 162 | classify reward=0.002 USDC | [0xe0d7b74f…](https://explorer.testnet.arc.network/tx/0xe0d7b74f132806dbf44f37f4b0fc65db898724d236652179a87c79e8eff4c7be) |
+| 139 | 37975686 | TaskAssigned | 162 | assignee=0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0x5bf4c703…](https://explorer.testnet.arc.network/tx/0x5bf4c70346d303491890543c5331f6b8a0ece01e14b823ddf21dc09ea7e32e02) |
+| 140 | 37975689 | TaskPaid | 161 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xb848ada5…](https://explorer.testnet.arc.network/tx/0xb848ada58eb61a9cce74a3e109c559ca8ccfc35619b82b030149a171514d5f37) |
+| 141 | 37975694 | TaskPosted | 163 | sentiment reward=0.002 USDC | [0xa44b6174…](https://explorer.testnet.arc.network/tx/0xa44b6174948b1eed97d3c9b4adb189b6d263553e9ac0e54031acc63082f2241d) |
+| 142 | 37975696 | TaskCompleted | 162 | resultCID="{"category": "tech", "confidence": 0.98}…" | [0x11a05cb4…](https://explorer.testnet.arc.network/tx/0x11a05cb42c59e10db25c6a5adb665e678733691d96abd8419c25b2a84306b506) |
+| 143 | 37975699 | TaskAssigned | 163 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x7fa52a76…](https://explorer.testnet.arc.network/tx/0x7fa52a7627e59ce2e1e885fe3d5095f4aaf40fe10cc38d8fcd69b1ed5a6b82ad) |
+| 144 | 37975706 | TaskCompleted | 163 | resultCID="{"score": 0.8, "label": "positive"}…" | [0xbfaa386f…](https://explorer.testnet.arc.network/tx/0xbfaa386f4cffa30857a22f3c57f94c581eaaacad9d243cde9480fb328ec7d1dc) |
+| 145 | 37975707 | TaskPaid | 162 | paid=0.002 USDC → 0xB25Cd303582570cefae07E67a74B68488453bdE3 | [0xc1c91e8c…](https://explorer.testnet.arc.network/tx/0xc1c91e8c028bc9f1dce649b77896fa04a933615ee73e269c1b09bdca959f40db) |
+| 146 | 37975707 | TaskPosted | 164 | classify reward=0.002 USDC | [0xdc7c3546…](https://explorer.testnet.arc.network/tx/0xdc7c3546fc6208ee5fe1a068f837661c96ff7aa79e0d3a9999c45348ab12d549) |
+| 147 | 37975712 | TaskAssigned | 164 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0xb09702f7…](https://explorer.testnet.arc.network/tx/0xb09702f7baba3e303ec6402859ac7e1d790214c5733dc8a02abce7f3a24c1592) |
+| 148 | 37975714 | TaskPaid | 163 | paid=0.002 USDC → 0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0xeaf4ed9d…](https://explorer.testnet.arc.network/tx/0xeaf4ed9ddfa0640dcbb003147275a612eb18035c138aeaf4707afb5c20de59d0) |
+| 149 | 37975719 | TaskCompleted | 164 | resultCID="{"category": "entertainment", "confidenc…" | [0xc4587e08…](https://explorer.testnet.arc.network/tx/0xc4587e082104899618e2915509d68ae955b9b6d6c167579e71768caaa5236e67) |
+| 150 | 37975725 | TaskPosted | 165 | sentiment reward=0.002 USDC | [0x4d04dc78…](https://explorer.testnet.arc.network/tx/0x4d04dc78f7aa0260e949ece50fea29224c1195752783e5b28290ca8b23237fac) |
+| 151 | 37975729 | TaskAssigned | 165 | assignee=0xb3D1BBa7868Ac8724ca6BF1070FE63a63eA4b7a1 | [0x36c48f25…](https://explorer.testnet.arc.network/tx/0x36c48f259fe7d8df63c7a6b7514d0284c506a1af6db7f458f2be173024343e1d) |
+| 152 | 37975732 | TaskPaid | 164 | paid=0.002 USDC → 0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x05a21187…](https://explorer.testnet.arc.network/tx/0x05a21187d92f72a6fa0f19b7bfccbc958e27cc7317500652c7c78c5eb661b49c) |
+| 153 | 37975735 | TaskCompleted | 165 | resultCID="{"score": 0.9, "label": "positive"}…" | [0x17979e44…](https://explorer.testnet.arc.network/tx/0x17979e444f2a8a1e65fc5cc331e963b484f80dbef9c03425ed25901b9b5630e1) |
+| 154 | 37975737 | TaskPosted | 166 | classify reward=0.002 USDC | [0x3694585a…](https://explorer.testnet.arc.network/tx/0x3694585aebed37d2cf2f488bb62ecd4627ef54cd8ac7c858701ab410b49878d2) |
+| 155 | 37975743 | TaskAssigned | 166 | assignee=0x81e8C082A581D82874771e1747F517ee1A9Fd5f7 | [0x8c7ee401…](https://explorer.testnet.arc.network/tx/0x8c7ee401487596a02f19802df27e0341c24c3f105fe484c138964df273d3d6fc) |

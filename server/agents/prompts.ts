@@ -33,8 +33,9 @@ ${fence(input)}`,
 
   sentiment: (input) =>
     `${PREAMBLE}
-Analyze sentiment of the text. Respond with a JSON object only, no markdown, no prose:
-{"score": <-1.0 to 1.0>, "label": "<positive|neutral|negative>"}
+Analyze sentiment of the text.
+Respond with exactly one lowercase word: positive, neutral, or negative.
+No JSON, no punctuation, no explanation.
 
 ${fence(input)}`,
 

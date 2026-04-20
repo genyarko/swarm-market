@@ -107,7 +107,7 @@ real time, trustless, no batching or custodian.
   50+ tx run (agent cards active, flow graph animating, gas comparison panel
   showing $X trad vs $0 Arc).
 - **Video presentation**: see §"Transaction Flow Demonstration (Video)" below.
-https://youtu.be/MYvywRosDYo
+https://youtu.be/8W_EnCeTaTE
 - **Slide presentation**: 5 slides covering problem → architecture → live
   numbers → Circle product feedback → future work.
 
